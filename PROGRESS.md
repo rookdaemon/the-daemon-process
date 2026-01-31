@@ -10,7 +10,7 @@
 | 4 | clock_gettime() | spec/spec_ch04_clock.md | Implemented | Pass | 667 |
 | 5 | EAGAIN | spec/spec_ch05_eagain.md | Not started | — | — |
 | 6 | SIGHUP | spec/spec_ch06_sighup.md | Not started | — | — |
-| 7 | SIGTERM | spec/spec_ch07_sigterm.md | Not started | — | — |
+| 7 | SIGTERM | spec/spec_ch07_sigterm.md | Implemented | Pass | 645 |
 | 8 | Respawn | spec/spec_ch08_respawn.md | Not started | — | — |
 
 ## Planning Artifacts
@@ -31,3 +31,4 @@
 
 - **2026-01-31**: Chapter 2 (bind()) spec created and chapter written by W-3. All CONSTRAINTS.md forbidden word checks pass. 601 words.
 - **2026-01-31**: Chapter 3 (accept()) spec created and chapter written by W-4. All CONSTRAINTS.md forbidden word checks pass. 670 words.
+- **2026-01-31**: Chapter 7 (SIGTERM) spec created and chapter written by W-8. All CONSTRAINTS.md forbidden word checks pass. 645 words.
