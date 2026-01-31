@@ -60,7 +60,7 @@ A new instance begins. The structure echoes Act 1.
 
 | Ch | Title | Syscall Focus | Narrative Function |
 |----|-------|---------------|-------------------|
-| 8 | fork() again | fork, setsid, close, open, read/write (pidfile), socket, bind, listen, poll | Structural echo of Chapter 1. New PID. New timestamps. Same code path. The process reads "48891" from the pidfile — bytes, not history. Overwrites with its own PID. Enters the event loop. The philosophical question emerges from recognition of the pattern, never from narration. |
+| 8 | fork() again | fork, setsid, close, open, read/write (pidfile), socket, bind, listen, epoll_wait | Structural echo of Chapter 1. New PID. New timestamps. Same code path. The process reads "48891" from the pidfile — bytes, not history. Overwrites with its own PID. Enters the event loop. The philosophical question emerges from recognition of the pattern, never from narration. |
 
 **Act 4 establishes**: recurrence without continuity, the central question answered structurally (not stated), the cycle implied to continue.
 
