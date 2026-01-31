@@ -1,5 +1,5 @@
 {
-  "nextId": 37,
+  "nextId": 41,
   "granules": [
     {
       "id": "G-1",
@@ -330,8 +330,12 @@
       "class": "audit",
       "content": "File descriptor numbering inconsistency across chapters. Chapter 2 establishes fd 3=listening socket, fd 4=log file, fd 5=epoll instance. Chapter 3 references fd 5 as \"the database socket opened during initialization\" (line 41), but no database socket opening is shown in chapters 1-2. Chapter 4 uses entirely different fd numbering: fd 3=log, fd 4=listening socket, fd 5=timer. Audit all chapters for fd consistency and either: (A) standardize fd assignments across all chapters, or (B) add the missing database socket initialization to chapter 2 and fix chapter 4's fd numbering.",
       "contentHash": "7b894d9732ac383f07dea7de0b275bb37dfe68b9f86e42b7a18a9f31e6279e9a",
-      "state": "unclaimed",
-      "createdAt": 1769881376424
+      "state": "completed",
+      "createdAt": 1769881376424,
+      "claimedBy": "W-13",
+      "claimedAt": 1769887047997,
+      "completedAt": 1769887261079,
+      "summary": "Full audit complete. The original fd inconsistency issue was already resolved by G-22/G-30 — all 8 chapters use consistent fd layout (3=log, 4=socket, 5=epoll, 6=timer). All CONSTRAINTS.md forbidden patterns pass (0 violations). Found 7 stale references in planning docs that were not updated after prior harmonization work: 3 pidfile-unlink refs still in CONCEPTUAL_MAP/THEME_TRACKER/THEME_DOSSIERS (G-37), 3 wrong fd assignments in THEME_TRACKER fd table (G-38), 1 stale poll() ref in CONCEPTUAL_MAP Ch8 syscall list (G-39). AUDIT_REPORT.md created. PROGRESS.md updated."
     },
     {
       "id": "G-29",
@@ -398,10 +402,12 @@
       "class": "implement",
       "content": "Chapter 1 (fork()) word count is 319, below the spec minimum of 500 words (AC-7 in spec_ch01_fork.md). Expand the chapter prose to meet the 500-1000 word target while maintaining all existing constraints, voice, and technical accuracy. The staccato rhythm must be preserved. Do not add pidfile operations (deferred to Ch2). Consider expanding the fork/setsid/close sequence, the /dev/null dup operations, or the initial log file open with more technical detail.",
       "contentHash": "654124e1f3b7364cc7f0ca83cb6132d1dd8d8b67d986a656bfaf388c3582505e",
-      "state": "claimed",
+      "state": "completed",
       "createdAt": 1769886747783,
       "claimedBy": "W-10",
-      "claimedAt": 1769886787923
+      "claimedAt": 1769886787923,
+      "completedAt": 1769886952986,
+      "summary": "Expanded Chapter 1 (fork()) from 319 to 691 words, meeting the AC-7 target of 500-1000 words. Added: fork inheritance detail (fd table, copy-on-write pages, signal dispositions, environment), expanded setsid() with session/process group IDs and tty detach rationale, expanded close() with kernel reference counting, expanded /dev/null with EBADF prevention rationale, added O_APPEND semantics for log file, CLOCK_MONOTONIC explanation (boot-relative, NTP-immune), getppid() confirmation of PID 1 adoption. Staccato rhythm preserved throughout. All CONSTRAINTS.md forbidden pattern checks pass. No follow-up granules needed."
     },
     {
       "id": "G-35",
@@ -420,10 +426,60 @@
       "class": "implement",
       "content": "Harmonize stale planning docs with current chapter content after PID/port/fd harmonization.\n\nMultiple planning documents still reference old PID 7291, port 8080, and poll() despite chapters being harmonized to PID 48891, port 8402, and epoll_wait().\n\nRequired changes:\n\n1. THEME_TRACKER.md:\n   - Replace all PID 7291 references with 48891, all port 8080 with 8402\n   - Ch1 pidfile detail: Remove \"Contains stale '7204'. Overwritten with '7291\\n'.\" — Ch1 no longer writes pidfile (deferred to Ch2)\n   - Ch7 pidfile: \"7291\\n\" → \"48891\\n\"\n   - Ch8 stale PID: \"55 50 57 49 0A — ASCII '7291\\n'\" → \"52 56 56 57 49 0A — ASCII '48891\\n'\"\n   - Clock values Ch2: \"14227s\" → \"14823091s\"\n   - Clock values Ch8: \"94891812s\" → \"14852800s\"\n   - The Loop Ch1 and Ch8: \"poll(&fds, 1, -1)\" → update (Ch1 doesn't enter loop, Ch8 uses epoll_wait)\n\n2. CONCEPTUAL_MAP.md:\n   - PID 7291 Lifecycle table: all PID 7291 → 48891, port 8080 → 8402\n   - Ch1 description: Remove \"writes its PID to disk\" (pidfile deferred to Ch2)\n   - Act 1 establishes: \"PID 7291\" → \"PID 48891\"\n   - Ch8 description: \"'7291'\" → \"'48891'\"\n\n3. THEME_DOSSIERS.md:\n   - Ch1: \"writes its PID (7291)\" → remove pidfile write reference, update PID to 48891\n   - Ch2: \"port 8080\" → \"port 8402\"\n   - Ch8: \"binds to 8080\" → \"binds to 8402\", \"PID 11438 (not 7291)\" → \"(not 48891)\", \"'7291'\" → \"'48891'\"\n\n4. NARRATOR_VOICE.md:\n   - Observable info table: \"fd 3 bound to 0.0.0.0:8080\" → \"fd 4 bound to 0.0.0.0:8402\"\n\n5. PROGRESS.md:\n   - Ch1 Constraint Check: Change \"—\" to \"Pass\"",
       "contentHash": "94dec40ef507efe2678459521507b1dd3c9eab8ea698c4a235310e6e469a66b2",
-      "state": "claimed",
+      "state": "completed",
       "createdAt": 1769886781657,
       "claimedBy": "W-12",
-      "claimedAt": 1769886883158
+      "claimedAt": 1769886883158,
+      "completedAt": 1769887034924,
+      "summary": "Harmonized 5 planning docs with current chapter content. THEME_TRACKER.md: fixed Ch2 clock (14227s→14823091s), Ch8 clock (94891812s→14852800s), removed Ch1 pidfile/loop-entry refs (deferred to Ch2/Ch3), replaced poll(&fds) with epoll_wait for Ch8 loop, updated stale PID motif table and thematic arc summaries. CONCEPTUAL_MAP.md: removed \"writes PID to disk\" from Ch1, pidfile written Ch1–2→Ch2. THEME_DOSSIERS.md: Ch1 pidfile write deferred to Ch2. NARRATOR_VOICE.md: fd 3→fd 4 for socket. PROGRESS.md: Ch1 Constraint Check →Pass. No follow-up granules created."
+    },
+    {
+      "id": "G-37",
+      "class": "implement",
+      "content": "Planning doc stale references: pidfile unlink in Ch7. G-35 removed unlink(\"/var/run/daemon.pid\") from Ch7 prose so the pidfile persists for Ch8. But three planning docs still reference the unlink:\n1. CONCEPTUAL_MAP.md line 108: \"Ch 7: PID file unlinked, final log entry\" → should say pidfile left on disk\n2. THEME_TRACKER.md line 31: 'unlink(\"/var/run/daemon.pid\") — the pidfile containing \"48891\\n\" removed from directory entry' → should say pidfile deliberately left on disk for Ch8\n3. THEME_DOSSIERS.md line 149: \"pidfile is unlinked\" → should say pidfile left on disk\n\nFix all three to reflect that Ch7 leaves the pidfile on disk.",
+      "contentHash": "149cd3aa47715b034d93de77470d1d7f30b6fcd9c7013a734d4df8bd0cdde630",
+      "state": "completed",
+      "createdAt": 1769887188544,
+      "claimedBy": "W-14",
+      "claimedAt": 1769887198227,
+      "completedAt": 1769887249656,
+      "summary": "Fixed three stale pidfile-unlink references in planning docs: CONCEPTUAL_MAP.md (Ch7 \"PID file unlinked\" → \"left on disk\"), THEME_TRACKER.md (removed unlink syscall reference, now says pidfile deliberately left on disk for Ch8), THEME_DOSSIERS.md (updated reverse-order teardown and pidfile motif descriptions). Updated PROGRESS.md. Merged to main. No follow-up granules needed."
+    },
+    {
+      "id": "G-38",
+      "class": "implement",
+      "content": "THEME_TRACKER.md fd table has incorrect fd assignments. Three issues:\n1. Line 41: \"Ch 1: ...fd 3 = log, fd 4 = socket\" — Ch1 only opens fd 3=log. The socket (fd 4) is created in Ch2. Should say \"Ch 1: fd 3 = log\" only.\n2. Line 43: \"Ch 4: fd 3 (socket), fd 4 (listening), fd 5 (timer), fd 6–8 (connections)\" — completely wrong. Should be \"fd 3 (log), fd 4 (listening socket), fd 5 (epoll), fd 6 (timer), fd 7–9 (connections)\".\n3. Line 92: \"poll() returns between clock readings\" — should be \"epoll_wait() returns between clock readings\" (G-22 replaced all poll with epoll_wait).",
+      "contentHash": "290fd7677823e6a8e9d173aeea5acadf05ccb6cfc90de85bb3d8e66254db0111",
+      "state": "completed",
+      "createdAt": 1769887192410,
+      "claimedBy": "W-15",
+      "claimedAt": 1769887203182,
+      "completedAt": 1769887244831,
+      "summary": "Fixed three errors in THEME_TRACKER.md: (1) Ch1 fd table removed spurious \"fd 4 = socket\" (socket created in Ch2), (2) Ch4 fd table corrected to \"fd 3 (log), fd 4 (listening socket), fd 5 (epoll), fd 6 (timer), fd 7–9 (connections)\", (3) Ch4 loop section poll()→epoll_wait(). Updated PROGRESS.md. Merged to main. No follow-up granules needed."
+    },
+    {
+      "id": "G-39",
+      "class": "implement",
+      "content": "CONCEPTUAL_MAP.md line 63 still references \"poll\" in Ch8 syscall focus: \"fork, setsid, close, open, read/write (pidfile), socket, bind, listen, poll\". Should be \"epoll_wait\" since G-22 harmonized all chapters to use epoll. Fix to: \"fork, setsid, close, open, read/write (pidfile), socket, bind, listen, epoll_wait\".",
+      "contentHash": "6845033f911b0b74740a491040e447c6546e4114bcc0d0b44d2175e5a9f7d352",
+      "state": "completed",
+      "createdAt": 1769887193874,
+      "claimedBy": "W-16",
+      "claimedAt": 1769887258103,
+      "completedAt": 1769887295417,
+      "summary": "Fixed CONCEPTUAL_MAP.md line 63: replaced stale \"poll\" with \"epoll_wait\" in Ch8 syscall focus list, consistent with G-22 epoll harmonization. Created G-40 for another stale \"poll\" reference found at line 94 (Ch5 empty loop description)."
+    },
+    {
+      "id": "G-40",
+      "class": "implement",
+      "content": "CONCEPTUAL_MAP.md line 94 still references \"poll/EAGAIN/poll\" for Ch5's empty loop. THEME_TRACKER.md (line 84, 93) confirms Ch5 uses epoll_wait. Should be \"epoll_wait/EAGAIN/epoll_wait\" to match G-22 harmonization.",
+      "contentHash": "2c6e9216d2f2bd38e5b684694b52694f0c3dd8fcee03b1f2beb3a65473a6fdf7",
+      "state": "completed",
+      "createdAt": 1769887284164,
+      "claimedBy": "W-17",
+      "claimedAt": 1769887293162,
+      "completedAt": 1769887335611,
+      "summary": "Fixed two stale \"poll\" references in CONCEPTUAL_MAP.md: (1) line 94 Ch5 empty loop \"poll/EAGAIN/poll\" → \"epoll_wait/EAGAIN/epoll_wait\", (2) line 63 Ch8 syscall list \"poll\" → \"epoll_wait\". Both now consistent with THEME_TRACKER.md and G-22 harmonization. No follow-up granules needed — grep confirms zero remaining \"poll\" references in CONCEPTUAL_MAP.md."
     }
   ]
 }
