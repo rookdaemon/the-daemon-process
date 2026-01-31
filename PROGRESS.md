@@ -4,7 +4,7 @@
 
 | Chapter | Title | Spec | Status | Constraint Check | Word Count |
 |---------|-------|------|--------|------------------|------------|
-| 1 | fork() | spec/spec_ch01_fork.md | Implemented | — | — |
+| 1 | fork() | spec/spec_ch01_fork.md | Implemented | Pass | 691 |
 | 2 | bind() | spec/spec_ch02_bind.md | Implemented | Pass | 601 |
 | 3 | accept() | spec/spec_ch03_accept.md | Implemented | Pass | 670 |
 | 4 | clock_gettime() | spec/spec_ch04_clock.md | Implemented | Pass | 667 |
@@ -44,3 +44,4 @@
 - **2026-01-31**: Ch1 spec updated by W-4 (G-31). Removed pidfile write requirement from Ch1 spec (AC-8, AC-1, Technical Requirements, Cross-cutting Concerns) since G-22 removed the pidfile write from Ch1 prose and Ch2 already handles the pidfile motif with the richer stale-PID discovery theme.
 - **2026-01-31**: Chapters 7-8 harmonized by W-3 (G-30). Ch7: replaced poll() with epoll_wait(), fixed timer fd 5→6, added epoll fd 5 close, PID 7291→48891, port 8080→8402. Ch8: stale pidfile PID 7291→48891 with corrected ASCII bytes, port 8080→8402, replaced poll() with epoll_wait(), added epoll_create1/timerfd_create for fd5/fd6. Specs updated. All CONSTRAINTS.md checks pass.
 - **2026-01-31**: Chapter 2 (bind()) updated by W-5 (G-32). Fixed CLOCK_MONOTONIC timestamp from 14227s (~4h uptime) to 14823091s (~171d uptime), aligning with Ch1's established timeline.
+- **2026-01-31**: Chapter 1 (fork()) expanded by W-10 (G-34). Word count 319→691. Added fork inheritance detail (fd table, copy-on-write pages, signal dispositions), expanded setsid() with session/process group IDs and tty detach detail, expanded close() with reference counting, expanded /dev/null with EBADF prevention rationale, added O_APPEND semantics, CLOCK_MONOTONIC explanation, getppid() confirmation. All CONSTRAINTS.md forbidden word checks pass.
