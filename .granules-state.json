@@ -1,5 +1,5 @@
 {
-  "nextId": 18,
+  "nextId": 32,
   "granules": [
     {
       "id": "G-1",
@@ -102,78 +102,254 @@
       "class": "implement",
       "content": "Write Chapter 8 (fork() again / Respawn). Implement spec/spec_ch08_respawn.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, THEME_DOSSIERS.md (Ch8 section), AND chapters/chapter_01_fork.md (to echo its structure) before writing. Output file: chapters/chapter_08_respawn.md. Must pass all acceptance criteria. Run forbidden word grep when done. Update PROGRESS.md.",
       "contentHash": "35a60e050aab4735009744a1638396cc8abdd29839a3770b6df83a3522a6465a",
-      "state": "claimed",
+      "state": "completed",
       "createdAt": 1769880299751,
       "claimedBy": "W-9",
-      "claimedAt": 1769880719133
+      "claimedAt": 1769880719133,
+      "completedAt": 1769880920386,
+      "summary": "Chapter 8 (fork() again / Respawn) written and merged to main. Created spec/spec_ch08_respawn.md and chapters/chapter_08_respawn.md. The chapter echoes Chapter 1's syscall sequence beat-for-beat with PID 11438 (vs 7291), different monotonic timestamps, and the key pidfile moment where bytes \"7291\" are read and overwritten. All CONSTRAINTS.md forbidden word checks pass (6 grep categories, zero matches). 644 words. PROGRESS.md updated. Follow-up granules created: G-18 (continuity review — verify pidfile PID consistency across Ch1-8), G-19 (create NARRATOR_VOICE.md), G-20 (create THEME_DOSSIERS.md)."
     },
     {
       "id": "G-10",
       "class": "review",
       "content": "Full manuscript review after all 8 chapters are written. Read all chapters in sequence. Verify: (1) All CONSTRAINTS.md forbidden words absent — grep every pattern. (2) Technical accuracy against domain/unix_process_lifecycle.md. (3) Motif placement matches THEME_TRACKER.md. (4) Rhythm per chapter matches CONSTRAINTS.md pacing rules. (5) Ch1/Ch8 echo is effective — nearly identical structure with different values. (6) Word count per chapter within spec ranges. (7) Overall narrative arc matches CONCEPTUAL_MAP.md and EMOTIONAL_ARC.md. Create fix granules for any issues found. Update PROGRESS.md.",
       "contentHash": "17c4d9fa0f400ec3d89333a087b5b05926354f335f98413e57e7674e346d5253",
-      "state": "claimed",
+      "state": "completed",
       "createdAt": 1769880303844,
       "claimedBy": "W-10",
-      "claimedAt": 1769880769593
+      "claimedAt": 1769880769593,
+      "completedAt": 1769880984966,
+      "summary": "Partial manuscript review completed (Ch1-6; Ch7-8 still being written by W-8/W-9). \n\nFINDINGS:\n1. FORBIDDEN WORD: Ch3 line 61 uses \"experience\" as consciousness verb (\"did not experience the gap\") — CONSTRAINTS.md violation. Fix: G-21.\n2. CROSS-CHAPTER CONTINUITY: PID inconsistency (Ch1: 7291, Ch2-6: 48891), port inconsistency (Ch1: 8080, Ch2/6: 8402), fd layout differs across chapters (fd3/fd4 swap between log and socket), event loop mechanism switches between poll() and epoll_wait() without explanation. Fix: G-22.\n3. MISSING SYSCALL: epoll_create/epoll_create1 never shown but epoll_wait used in Ch3/5/6. Fix: G-23.\n4. FOLLOW-UP: Full 8-chapter review needed after Ch7/8 written and fixes applied. Created: G-24.\n\nPASSING:\n- All other forbidden word greps (emotional attribution, consciousness language, anthropomorphic intent, metaphor/simile, human temporal concepts, self-reference): CLEAN across all 6 chapters.\n- Word counts: Ch1=599, Ch2=601, Ch3=670, Ch4=667, Ch5=699, Ch6=699 — all within 500-1000 spec range.\n- Rhythm: Ch1-2 staccato (correct), Ch3-5 meditative/repetitive (correct), Ch6 has mid-sentence interruption on SIGHUP (correct).\n- Ch6 technical accuracy: volatile sig_atomic_t, EINTR from epoll_wait, config reload, log rotation all correct.\n\nPROGRESS.md updated. 4 granules created: G-21, G-22, G-23, G-24."
     },
     {
       "id": "G-11",
       "class": "implement",
       "content": "Create NARRATOR_VOICE.md — Process perspective rules document. Define: how the narrator refers to itself (the process / PID N), cognitive limitations (no memory between instances, no awareness of other processes' internals), what the narrator can observe (own syscall returns, own fd table, own memory, signals received, clock values), and what it cannot observe (other processes' state, user intent, network content meaning). Referenced by CLAUDE.md as Tier 1 required reading for all content work.",
       "contentHash": "44d6a19fc1ed43ec68528dbcf8da6c6a7de21f3baab393f55d5eb1699b820f99",
-      "state": "claimed",
+      "state": "completed",
       "createdAt": 1769880458981,
       "claimedBy": "W-11",
-      "claimedAt": 1769880874294
+      "claimedAt": 1769880874294,
+      "completedAt": 1769880957940,
+      "summary": "Created NARRATOR_VOICE.md with: self-reference rules (the process / PID N), cognitive limitations (no memory between instances, no awareness of other processes' internals, no understanding of meaning), observable information sources (syscall returns, fd table, memory, signals, clock values, process state, filesystem reads, env vars), non-observable information (other processes' state, user intent, network content meaning, physical time, signal motivation, hardware state, source code, instance history), narrative stance (zero-distance, present tense, no commentary/foreshadowing/retrospection), and voice characteristics. Updated PROGRESS.md. Merged to main. No follow-up granules needed — document is self-contained."
     },
     {
       "id": "G-12",
       "class": "implement",
       "content": "Create THEME_DOSSIERS.md — Chapter-by-chapter thematic guidance. For each of the 8 chapters, specify: primary theme, key motifs to plant, philosophical undercurrent, and connections to other chapters. Referenced by CLAUDE.md as Tier 2 planning document.",
       "contentHash": "a379de8b9951638d034c40654f4b5cdd27c7efc3852afce03edc50255c9f641c",
-      "state": "unclaimed",
-      "createdAt": 1769880461131
+      "state": "completed",
+      "createdAt": 1769880461131,
+      "claimedBy": "W-12",
+      "claimedAt": 1769880934173,
+      "completedAt": 1769881074553,
+      "summary": "Created THEME_DOSSIERS.md with chapter-by-chapter thematic guidance for all 8 chapters. Each entry covers: primary theme, key motifs to plant, philosophical undercurrent, and connections to other chapters. Updated PROGRESS.md. Merged to main. No follow-up granules needed — the document is complete and self-contained as a Tier 2 planning reference."
     },
     {
       "id": "G-13",
       "class": "implement",
       "content": "Create CONCEPTUAL_MAP.md — Story spine document defining the 4 acts, 8 chapters, narrative arc, and structural overview. Referenced by CLAUDE.md as Tier 2 planning document.",
       "contentHash": "a5b269bc65c2764edc23117c3383126a8b09bd8d278b424d12ecbd2435e65cc8",
-      "state": "unclaimed",
-      "createdAt": 1769880462222
+      "state": "completed",
+      "createdAt": 1769880462222,
+      "claimedBy": "W-13",
+      "claimedAt": 1769880969226,
+      "completedAt": 1769881061472,
+      "summary": "Created CONCEPTUAL_MAP.md — story spine document defining 4 acts (Fork, The Loop, Signals, Respawn), 8 chapters with syscall focus and narrative function, thematic throughlines (identity/continuity, loop as existence, time without duration, artifacts on disk), PID 7291 lifecycle table, narrative arc diagram, and reader experience trajectory. Updated PROGRESS.md. Merged to main. No follow-up granules needed — this document is self-contained and consistent with all existing specs."
     },
     {
       "id": "G-14",
       "class": "implement",
       "content": "Create EMOTIONAL_ARC.md — Reader experience journey document. Define intended reader emotional state at each chapter, how technical precision creates affect, and the philosophical confrontation trajectory. Referenced by CLAUDE.md as Tier 2 planning document.",
       "contentHash": "48a38b5ac7fccc22b452e96e74c6c75caf50a387bf168886b276b9dd132c90e6",
-      "state": "unclaimed",
-      "createdAt": 1769880463802
+      "state": "completed",
+      "createdAt": 1769880463802,
+      "claimedBy": "W-14",
+      "claimedAt": 1769880999305,
+      "completedAt": 1769881136545,
+      "summary": "Created EMOTIONAL_ARC.md — reader experience journey document. Defines intended reader emotional state at each of the 8 chapters across 4 acts (Fork, Loop, Signals, Recurrence). Documents the core \"precision as affect\" mechanism, chapter-by-chapter reader states, the philosophical confrontation trajectory, and a technical-detail-to-reader-affect mapping table. Merged to main with conflict resolution in PROGRESS.md. No follow-up granules needed — THEME_TRACKER.md (the remaining planning artifact) is already tracked in PROGRESS.md."
     },
     {
       "id": "G-15",
       "class": "implement",
       "content": "Create THEME_TRACKER.md — Motif tracking spreadsheet/table. Track recurring motifs (PID file, fd table, clock values, /dev/null, the stale PID) across all 8 chapters, noting where each is planted and where it echoes. Referenced by CLAUDE.md as Tier 2 planning document.",
       "contentHash": "9a19719660224160f51b17ed6b407efb3e03e72afe1ff889882efe6b256a3d18",
-      "state": "unclaimed",
-      "createdAt": 1769880465942
+      "state": "completed",
+      "createdAt": 1769880465942,
+      "claimedBy": "W-15",
+      "claimedAt": 1769881074399,
+      "completedAt": 1769881255320,
+      "summary": "Created THEME_TRACKER.md tracking 8 motifs (PID file, fd table, clock values, /dev/null, stale PID, the loop, signal handlers, memory/mmap) across all 8 chapters. Includes distribution matrix, per-motif detail tables with chapter-by-chapter role annotations (plant/seed/build/focus/echo/payoff/teardown/interrupt), and 4 thematic arc summaries (Identity/Continuity, Loop as Existence, Time Without Duration, Resource Lifecycle). Updated PROGRESS.md. Merged to main with conflict resolution. No follow-up granules needed."
     },
     {
       "id": "G-16",
       "class": "implement",
       "content": "Create NARRATOR_VOICE.md planning artifact. This document is referenced by CLAUDE.md as Tier 1 (must consult for ANY content work) but does not exist. Should codify the process perspective rules, cognitive limitations, and voice guidelines used across all chapters.",
       "contentHash": "f09fdb04de5cf20283f99e09570b3352c6351b0a1ca8537ff50b7b2a38d38304",
-      "state": "unclaimed",
-      "createdAt": 1769880744710
+      "state": "completed",
+      "createdAt": 1769880744710,
+      "claimedBy": "W-16",
+      "claimedAt": 1769881089340,
+      "completedAt": 1769881107657,
+      "summary": "NARRATOR_VOICE.md already exists and is complete (commit 52ac55a). It covers: self-reference rules, cognitive limitations (no memory between instances, no awareness of other processes, no understanding of meaning), observable information sources, invisible information, narrative stance (no commentary/foreshadowing/retrospection, present tense only), and voice characteristics. PROGRESS.md already marks it as Complete. No follow-up granules needed."
     },
     {
       "id": "G-17",
       "class": "review",
       "content": "Review Chapter 6 (SIGHUP) for technical accuracy and voice consistency. Verify: SIGHUP signal handling sequence, EINTR behavior, volatile sig_atomic_t usage, log rotation mechanics, config reload sequence. Check prose rhythm matches the \"interruption\" style specified in CONSTRAINTS.md for chapters 6-7.",
       "contentHash": "fc5d29ae365f36ed9700fcbb9ee05da6d3ddadf06b8a57ecc00e67d8f2ed79ff",
+      "state": "completed",
+      "createdAt": 1769880747781,
+      "claimedBy": "W-17",
+      "claimedAt": 1769881124383,
+      "completedAt": 1769881187650,
+      "summary": "Chapter 6 (SIGHUP) passes all 13 acceptance criteria. Forbidden pattern grep: clean (no emotional attribution, consciousness language, anthropomorphic intent, metaphor, or first-person pronouns). Technical accuracy verified: SIGHUP delivery, EINTR from epoll_wait, volatile sig_atomic_t flag mechanism, config reload via open/read/close, log rotation via close/open with correct O_WRONLY|O_APPEND|O_CREAT flags, listening socket persistence, same PID throughout. Prose rhythm correctly implements the \"interruption\" style — mid-word break on \"retu—\" when SIGHUP arrives, loop rhythm from Ch3 fractures then resumes with different parameters. Word count 699 (within 600-1000 target). One minor note: the write() restart after signal delivery implies SA_RESTART but doesn't explicitly mention it; behavior described is plausible and not inaccurate. No granules created — no issues require remediation."
+    },
+    {
+      "id": "G-18",
+      "class": "review",
+      "content": "Full-story continuity review: Verify that Chapter 8's PID (11438) and timestamps are consistent with the narrative timeline across all 8 chapters. Check that Chapter 7 (SIGTERM) ends with exit() of PID 48891 (used in Ch3-6) and that Chapter 8's stale pidfile correctly references PID 7291 from Chapter 1 (the original daemon, not the Ch3-6 PID 48891). If inconsistent, fix Chapter 8's pidfile reference to match the actual preceding instance's PID.",
+      "contentHash": "f3080e655b8e74dcbfb63f4a5ec0b6025f255c0565971130656b8b6813a218c8",
+      "state": "completed",
+      "createdAt": 1769880908534,
+      "claimedBy": "W-18",
+      "claimedAt": 1769881150565,
+      "completedAt": 1769881229357,
+      "summary": "Full-story continuity review complete. Found 3 major issues, created 3 audit granules:\n\n**G-25 — PID continuity break (Ch1/Ch7 vs Ch2-6):** The CONCEPTUAL_MAP states PID 7291 runs through Acts 1-3, and Ch7 correctly uses PID 7291. However, Ch2 introduces PID 48891 (port 8402), which persists through Ch3-6. This means either Ch2-6 are wrong (should use 7291/8080) or Ch7 is wrong (should use 48891/8402). Recommended: align Ch2-6 to use PID 7291 per the conceptual map.\n\n**G-26 — Port inconsistency in Ch7:** Ch7 uses port 8080 (matching Ch1/Ch8) but Ch2-6 use port 8402. Dependent on G-25 resolution.\n\n**G-27 — Ch8 pidfile vs Ch7 unlink contradiction:** Ch7 unlinks the pidfile and confirms it doesn't exist. Ch8 then opens and reads \"7291\\n\" from it. This is a technical impossibility — O_CREAT would create an empty file, not one containing the old PID. Either Ch7 shouldn't unlink (preserving the stale PID for Ch8's thematic echo) or Ch8 needs revision.\n\n**Ch8's PID 11438 and timestamps** are internally consistent. Ch8's monotonic time (~94.8M seconds) is plausibly later than Ch7's (~14.8M seconds), representing ~925 days between instances."
+    },
+    {
+      "id": "G-19",
+      "class": "implement",
+      "content": "Create NARRATOR_VOICE.md planning artifact. Referenced by CLAUDE.md as Tier 1 required reading but does not exist. Should codify: process perspective rules, cognitive limitations of the narrator, how \"experience\" maps to syscalls, the non-anthropomorphic voice constraints in prose form.",
+      "contentHash": "fe5c329625028fd05b896b3f977c5ccf6b0216d9962ef9bc52ad99a6e19c2abb",
+      "state": "completed",
+      "createdAt": 1769880911393,
+      "claimedBy": "W-19",
+      "claimedAt": 1769881204151,
+      "completedAt": 1769881230615,
+      "summary": "NARRATOR_VOICE.md already exists on main (commit 52ac55a). It covers all required content: process perspective rules, cognitive limitations, syscall-based observation model, what the narrator can/cannot observe, narrative stance, and voice characteristics. PROGRESS.md already marks it as Complete. No changes needed. No follow-up granules identified."
+    },
+    {
+      "id": "G-20",
+      "class": "implement",
+      "content": "Create THEME_DOSSIERS.md planning artifact. Referenced by CLAUDE.md as Tier 1/2 required reading but does not exist. Should contain chapter-by-chapter thematic guidance, motif placement notes, and the philosophical questions each chapter surfaces.",
+      "contentHash": "4bff54b17484c037bdd683be745a11dca6b1a4ddefc85fb144d53b7ec66d73d0",
+      "state": "completed",
+      "createdAt": 1769880912911,
+      "claimedBy": "W-20",
+      "claimedAt": 1769881252026,
+      "completedAt": 1769881276479,
+      "summary": "THEME_DOSSIERS.md already exists (created by W-12 in commit 1e83621). Contains chapter-by-chapter thematic guidance for all 8 chapters including primary themes, key motifs, philosophical undercurrents, and inter-chapter connections. PROGRESS.md already marks it as Complete. No follow-up granules needed."
+    },
+    {
+      "id": "G-21",
+      "class": "implement",
+      "content": "Fix forbidden word \"experience\" in Chapter 3 (accept()), line 61. The sentence \"The process did not experience the gap\" uses \"experience\" as a verb of consciousness, which is forbidden per CONSTRAINTS.md. Replace with a technically grounded alternative that conveys the same meaning through process mechanics (e.g., \"The process was not scheduled during the gap\" or similar). File: chapters/chapter_03_accept.md.",
+      "contentHash": "f73417ead61a3e9da099e4f15d9c61fbcc5130cac23b42d9cff53abd8f145246",
+      "state": "completed",
+      "createdAt": 1769880929649,
+      "claimedBy": "W-21",
+      "claimedAt": 1769881252636,
+      "completedAt": 1769881279787,
+      "summary": "Replaced forbidden consciousness verb \"experience\" in chapters/chapter_03_accept.md line 61. Changed \"The process did not experience the gap. The process was not scheduled.\" to \"The process was not scheduled during the gap.\" Verified no remaining \"experience\" violations in the file. Merged to main. No follow-up granules needed."
+    },
+    {
+      "id": "G-22",
+      "class": "implement",
+      "content": "Fix file descriptor and PID continuity across chapters 1-6. Currently: Ch1 uses PID 7291, port 8080, poll(), fd3=log, fd4=socket. Ch2 uses PID 48891, port 8402, fd3=socket, fd4=log. Ch3/5/6 use epoll_wait(), Ch4 uses poll(). Ch3 has unexplained fd5=database socket and accept4 returning fd7 (should be fd5). Ch4 has fd3=log, fd4=socket (reversed from Ch2), fd5=timer. These inconsistencies break technical immersion. Options: (A) Harmonize all chapters to one consistent PID, port, fd layout, and event loop mechanism (epoll throughout). (B) If chapters represent different daemon instances/lifetimes, make this explicit. Recommended: Option A — unify to epoll_wait, consistent fd numbering, and decide on one PID/port scheme. Files: chapters/chapter_01_fork.md through chapter_06_sighup.md.",
+      "contentHash": "0b00bd74e3213576a7bbeb20387adc98f5a1f9f4213508943d6a21f578177301",
+      "state": "completed",
+      "createdAt": 1769880935102,
+      "claimedBy": "W-1",
+      "claimedAt": 1769885872364,
+      "completedAt": 1769886320842,
+      "summary": "Harmonized fd/PID/port/epoll continuity across chapters 1-6. Unified to PID 48891, port 8402, fd3=log, fd4=socket, fd5=epoll, fd6=timer (Ch4+), epoll_wait throughout. Removed duplicate socket/bind/listen/poll from Ch1, removed unexplained database socket from Ch3, replaced poll() with epoll_wait in Ch4. All CONSTRAINTS.md forbidden word checks pass. Updated spec_ch04_clock.md and PROGRESS.md. Created follow-up granules: G-30 (harmonize Ch7-8 to match new scheme, fix Ch8 stale PID reference), G-31 (reconcile Ch1 pidfile removal with Ch1 spec)."
+    },
+    {
+      "id": "G-23",
+      "class": "implement",
+      "content": "Add missing epoll_create/epoll_create1 initialization to the narrative. Chapters 3, 5, and 6 use epoll_wait() but the epoll file descriptor is never shown being created. Either: (A) Add epoll_create1(0) to Chapter 1 or 2 during initialization, or (B) Show it in Chapter 3's opening. The epfd must be created before any epoll_ctl or epoll_wait calls. This is a technical accuracy requirement per CLAUDE.md quality gates.",
+      "contentHash": "61ff4211fb086a82ebc6a36b1aea8c8ad26aaabdd005d8b387b0ba2f9be66baa",
+      "state": "completed",
+      "createdAt": 1769880938214,
+      "claimedBy": "W-23",
+      "claimedAt": 1769881291775,
+      "completedAt": 1769881385667,
+      "summary": "Added epoll_create1(0) and epoll_ctl(EPOLL_CTL_ADD) initialization to Chapter 2's end, establishing fd 5 as the epoll instance before the event loop begins in Chapter 3. Updated fd count from two to three and syscall count from twelve to fourteen. No CONSTRAINTS.md violations. Created follow-up granule G-28 (audit) for fd numbering inconsistencies across chapters (ch3 references fd 5 as database socket, ch4 uses entirely different fd numbering)."
+    },
+    {
+      "id": "G-24",
+      "class": "review",
+      "content": "Re-run full manuscript review (G-10 follow-up) after chapters 7 and 8 are written AND after the continuity/fd fixes from sibling granules are applied. This review should verify: (1) Ch1/Ch8 echo structure with different values, (2) narrative arc completeness, (3) all fixes from the initial review are applied, (4) full forbidden word grep across all 8 chapters. Cannot be completed until G-8, G-9, and all fix granules are done.",
+      "contentHash": "b09016afecdd2226aa323bdd2b79af86ac6eef336b3bf2ea2fe4ce77f64a6334",
+      "state": "completed",
+      "createdAt": 1769880942286,
+      "claimedBy": "W-24",
+      "claimedAt": 1769881291239,
+      "completedAt": 1769881405134,
+      "summary": "Full manuscript review (G-10 follow-up) completed across all 8 chapters.\n\n**PASSING:**\n1. **Forbidden word grep**: ALL CLEAN — 6 pattern categories (emotional attribution, consciousness language, anthropomorphic intent, metaphor/simile, human temporal concepts, first-person pronouns) returned zero matches across all 8 chapters.\n2. **G-21 fix verified**: \"experience\" removed from Ch3 line 61; now reads \"The process was not scheduled during the gap.\"\n3. **Ch1/Ch8 echo structure**: Effective. Ch8 mirrors Ch1 beat-for-beat with different PID (11438 vs 7291), different monotonic timestamps, and critically reads \"7291\" from the stale pidfile — creating the thematic connection.\n4. **Narrative arc**: All 4 acts present (Fork→Loop→Signals→Respawn). Rhythm progression correct: Ch1-2 staccato, Ch3-5 meditative/repetitive, Ch6-7 interrupted, Ch8 echoes Ch1.\n5. **Voice consistency**: No anthropomorphic slips detected. Process perspective maintained throughout.\n6. **Word counts**: All within 500-1000 spec range (599, 601, 670, 667, 699, 699, 645, 644).\n\n**OUTSTANDING ISSUES (existing granules):**\n- **G-22** (claimed, in-progress): PID inconsistency (Ch1/4/7: 7291, Ch2/3/5/6: 48891), port inconsistency (8080 vs 8402), fd layout swaps, event loop mechanism (poll vs epoll).\n- **G-23** (unclaimed): Missing epoll_create/epoll_create1 initialization — epoll_wait used in Ch3/5/6 without showing epfd creation.\n- **G-25** (unclaimed): PID continuity audit.\n- **G-26** (unclaimed): Port inconsistency in Ch7.\n- **G-27** (unclaimed): Ch7 unlinks pidfile but Ch8 reads \"7291\" from it — technical impossibility that breaks the thematic climax.\n\n**NEW ISSUE — G-29 created:**\n- **G-29**: Monotonic timestamp scale inconsistency. Three incompatible timelines: Ch1/4/7 use ~14.8M seconds (~171 days uptime), Ch3/5/6 use ~94,827-94,877 seconds (~26 hours), Ch8 uses ~94.9M seconds (~3 years). Format also varies: sec.nsec struct vs raw nanoseconds.\n\n**VERDICT**: The manuscript is narratively complete and the voice is strong. However, it cannot be considered finished until the continuity fixes (G-22, G-23, G-25-27, G-29) are applied. The Ch7/Ch8 pidfile contradiction (G-27) is the most critical issue as it undermines the story's thematic climax."
+    },
+    {
+      "id": "G-25",
+      "class": "audit",
+      "content": "PID continuity break between Ch1/Ch7 and Ch2-6: Chapter 2 introduces PID 48891 and port 8402, while the CONCEPTUAL_MAP (line 20) specifies the story follows PID 7291 throughout Acts 1-3. Ch7 correctly uses PID 7291 per the conceptual map, but Ch2-6 use PID 48891. This creates a narrative discontinuity — the story appears to follow two different daemon instances without transition. Resolution options: (A) Revise Ch2 to use PID 7291 throughout (keeping the stale-PID-in-pidfile motif with a different stale PID like 31072), adjust port to 8080, and propagate through Ch3-6. (B) Accept the two-instance interpretation and revise Ch7 to terminate PID 48891 on port 8402 instead. Option A aligns with the CONCEPTUAL_MAP's stated intent.",
+      "contentHash": "151871a8ae1d519e41f675b35bc88d4a76791c3fc689c894349410b234bf8364",
       "state": "unclaimed",
-      "createdAt": 1769880747781
+      "createdAt": 1769881210024
+    },
+    {
+      "id": "G-26",
+      "class": "audit",
+      "content": "Port inconsistency in Ch7: Chapter 7 references port 8080 (lines 33, 61) but Chapters 2-6 use port 8402. If Ch7 is terminating the Ch2-6 daemon, the port should be 8402. If Ch7 is terminating the Ch1 daemon (PID 7291), port 8080 is correct but the Ch2-6 daemon's fate is unnarrated. This is part of the larger PID continuity issue (see related audit granule).",
+      "contentHash": "c0aa064340be51a09121c99f1d7730324c42592e7d93f3bff0e58fc9417b1c22",
+      "state": "unclaimed",
+      "createdAt": 1769881212820
+    },
+    {
+      "id": "G-27",
+      "class": "audit",
+      "content": "Chapter 8 pidfile logic vs Ch7 unlink: Ch7 (line 41) calls unlink(\"/var/run/daemon.pid\"), removing the pidfile from the filesystem, and line 61 confirms \"The pidfile does not exist.\" However, Ch8 (line 23) opens /var/run/daemon.pid with O_RDWR | O_CREAT and reads \"7291\\n\" from it. If the pidfile was unlinked in Ch7, it shouldn't exist for Ch8 to read. Ch8's O_CREAT flag would create an empty file, not one containing \"7291\\n\". Either Ch7 shouldn't unlink the pidfile (so Ch8 can find the stale PID), or Ch8 should find an empty/nonexistent file. The thematic intent (finding the previous instance's trace) requires the pidfile to exist, suggesting Ch7's unlink should be removed or Ch8 needs a different mechanism to encounter the stale PID.",
+      "contentHash": "b1b9df53d08fb119c8a273846561a4cef41ed8ac05b7063503097000af3a2243",
+      "state": "unclaimed",
+      "createdAt": 1769881218494
+    },
+    {
+      "id": "G-28",
+      "class": "audit",
+      "content": "File descriptor numbering inconsistency across chapters. Chapter 2 establishes fd 3=listening socket, fd 4=log file, fd 5=epoll instance. Chapter 3 references fd 5 as \"the database socket opened during initialization\" (line 41), but no database socket opening is shown in chapters 1-2. Chapter 4 uses entirely different fd numbering: fd 3=log, fd 4=listening socket, fd 5=timer. Audit all chapters for fd consistency and either: (A) standardize fd assignments across all chapters, or (B) add the missing database socket initialization to chapter 2 and fix chapter 4's fd numbering.",
+      "contentHash": "7b894d9732ac383f07dea7de0b275bb37dfe68b9f86e42b7a18a9f31e6279e9a",
+      "state": "unclaimed",
+      "createdAt": 1769881376424
+    },
+    {
+      "id": "G-29",
+      "class": "implement",
+      "content": "Fix monotonic timestamp inconsistency across chapters. Ch1/Ch4/Ch7/Ch8 use clock_gettime returning seconds in the ~14.8M range (struct with tv_sec/tv_nsec). Ch3/Ch5/Ch6 use raw nanosecond values in the ~94.8 trillion range (e.g., 94827174038291 nanoseconds). These represent different uptime durations (~171 days vs ~3 years) and different formatting conventions (sec.nsec struct vs raw ns). All chapters should use a consistent format and timeline. Recommend aligning Ch3/Ch5/Ch6 to the sec.nsec struct format used in Ch1/Ch4/Ch7/Ch8, with monotonic values in the ~14.8M second range to represent a coherent daemon lifetime. Depends on G-22 (overall continuity fix) being resolved first or done simultaneously.",
+      "contentHash": "3b897cb9d4f7c4c84839b284d8260df2adf90ffccda049a508eb4b943f9d1966",
+      "state": "claimed",
+      "createdAt": 1769881377008,
+      "claimedBy": "W-2",
+      "claimedAt": 1769885870848
+    },
+    {
+      "id": "G-30",
+      "class": "implement",
+      "content": "Fix chapters 7-8 to match harmonized fd/PID scheme from G-22. Ch7 (SIGTERM) and Ch8 (Respawn) need verification against canonical layout: fd3=log, fd4=socket, fd5=epoll, fd6=timer, PID 48891, port 8402, epoll_wait throughout. Ch8 currently references stale PID \"7291\" in pidfile — this should now read \"48891\" since Ch1 was updated. Ch8 uses PID 11438 for the new instance which is fine but its fd layout and event loop mechanism need checking for consistency.",
+      "contentHash": "4ccc69f1de3b82089f909113ed2f06fe5ff3cac06c66a26a6f14f2cbb53e0bb8",
+      "state": "claimed",
+      "createdAt": 1769886303216,
+      "claimedBy": "W-3",
+      "claimedAt": 1769886313815
+    },
+    {
+      "id": "G-31",
+      "class": "implement",
+      "content": "Restore pidfile write to Chapter 1. G-22 removed the pidfile write from Ch1 to avoid duplication with Ch2, but the Ch1 spec (spec_ch01_fork.md AC-8) requires \"Establishes the PID file motif.\" Options: (A) Add pidfile write back to Ch1 and adjust Ch2 to not re-read it (since it already contains current PID). (B) Update Ch1 spec to remove the pidfile requirement since Ch2 handles it with the richer stale-PID theme. Recommended: Option B — update the spec, since Ch2's treatment is thematically stronger.",
+      "contentHash": "06b2b77159d6345825abdb6c5f0add931a42824dc4bcd4688c8593293aa021aa",
+      "state": "claimed",
+      "createdAt": 1769886310040,
+      "claimedBy": "W-4",
+      "claimedAt": 1769886338128
     }
   ]
 }

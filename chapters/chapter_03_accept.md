@@ -16,7 +16,7 @@
 
 `close(6)`. The file descriptor is released. The kernel sends FIN to 10.0.2.15:48372.
 
-`clock_gettime(CLOCK_MONOTONIC, &ts)` returns 94827174038291 nanoseconds. The delta from the previous call: 483712 nanoseconds. Less than half a millisecond for the full cycle — accept, read, write, close.
+`clock_gettime(CLOCK_MONOTONIC, &ts)`. ts.tv_sec = 14830112. ts.tv_nsec = 038291441. The delta from the previous call: 483712 nanoseconds. Less than half a millisecond for the full cycle — accept, read, write, close.
 
 `epoll_wait()` returns. fd 4 reports EPOLLIN.
 
@@ -30,7 +30,7 @@
 
 `close(6)`.
 
-`clock_gettime(CLOCK_MONOTONIC, &ts)` returns 94827174994017 nanoseconds. Delta: 955726 nanoseconds. The second cycle took longer. The process does not compare. The process executes the next iteration.
+`clock_gettime(CLOCK_MONOTONIC, &ts)`. ts.tv_sec = 14830112. ts.tv_nsec = 039247167. Delta: 955726 nanoseconds. The second cycle took longer. The process does not compare. The process executes the next iteration.
 
 `epoll_wait()` returns. fd 4 reports EPOLLIN.
 
@@ -42,7 +42,7 @@
 
 `close(6)`.
 
-`clock_gettime(CLOCK_MONOTONIC, &ts)` returns 94827177893441 nanoseconds. Delta: 2899424 nanoseconds. The larger request body required more processing cycles. The delta is a number. The process stores it nowhere.
+`clock_gettime(CLOCK_MONOTONIC, &ts)`. ts.tv_sec = 14830112. ts.tv_nsec = 042146591. Delta: 2899424 nanoseconds. The larger request body required more processing cycles. The delta is a number. The process stores it nowhere.
 
 ---
 
@@ -54,7 +54,7 @@ fd 6 opens. fd 6 closes. fd 6 opens. fd 6 closes. The integer is reused because 
 
 Between iterations, the process state is TASK_INTERRUPTIBLE — sleeping in `epoll_wait()`, waiting for the kernel to deliver an event on a monitored descriptor. The CPU executes other processes. The scheduler will return control when data arrives on fd 4.
 
-`clock_gettime(CLOCK_MONOTONIC, &ts)` returns 94827481772918 nanoseconds. 303,879,477 nanoseconds have elapsed since the last connection. The gap is three hundred milliseconds of no connections. The process was not scheduled during the gap. The gap is the difference between two `clock_gettime` return values, computed after the second call.
+`clock_gettime(CLOCK_MONOTONIC, &ts)`. ts.tv_sec = 14830112. ts.tv_nsec = 346026068. 303,879,477 nanoseconds have elapsed since the last connection. The gap is three hundred milliseconds of no connections. The process was not scheduled during the gap. The gap is the difference between two `clock_gettime` return values, computed after the second call.
 
 `epoll_wait()` returns. fd 4 reports EPOLLIN.
 
