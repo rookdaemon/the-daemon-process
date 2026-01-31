@@ -1,5 +1,5 @@
 {
-  "nextId": 32,
+  "nextId": 37,
   "granules": [
     {
       "id": "G-1",
@@ -294,24 +294,36 @@
       "class": "audit",
       "content": "PID continuity break between Ch1/Ch7 and Ch2-6: Chapter 2 introduces PID 48891 and port 8402, while the CONCEPTUAL_MAP (line 20) specifies the story follows PID 7291 throughout Acts 1-3. Ch7 correctly uses PID 7291 per the conceptual map, but Ch2-6 use PID 48891. This creates a narrative discontinuity — the story appears to follow two different daemon instances without transition. Resolution options: (A) Revise Ch2 to use PID 7291 throughout (keeping the stale-PID-in-pidfile motif with a different stale PID like 31072), adjust port to 8080, and propagate through Ch3-6. (B) Accept the two-instance interpretation and revise Ch7 to terminate PID 48891 on port 8402 instead. Option A aligns with the CONCEPTUAL_MAP's stated intent.",
       "contentHash": "151871a8ae1d519e41f675b35bc88d4a76791c3fc689c894349410b234bf8364",
-      "state": "unclaimed",
-      "createdAt": 1769881210024
+      "state": "completed",
+      "createdAt": 1769881210024,
+      "claimedBy": "W-6",
+      "claimedAt": 1769886586783,
+      "completedAt": 1769886723905,
+      "summary": "Full audit complete. The original PID discontinuity (7291 vs 48891) in chapters was already resolved by G-22 and G-30. All 8 chapters pass CONSTRAINTS.md forbidden pattern checks with 0 violations. All chapters match their spec acceptance criteria. Found 25 stale references to old PID 7291/port 8080 in 5 planning documents (CONCEPTUAL_MAP, THEME_TRACKER, THEME_DOSSIERS, EMOTIONAL_ARC, NARRATOR_VOICE). Created G-33 (implement) to update these planning docs. AUDIT_REPORT.md written and PROGRESS.md updated."
     },
     {
       "id": "G-26",
       "class": "audit",
       "content": "Port inconsistency in Ch7: Chapter 7 references port 8080 (lines 33, 61) but Chapters 2-6 use port 8402. If Ch7 is terminating the Ch2-6 daemon, the port should be 8402. If Ch7 is terminating the Ch1 daemon (PID 7291), port 8080 is correct but the Ch2-6 daemon's fate is unnarrated. This is part of the larger PID continuity issue (see related audit granule).",
       "contentHash": "c0aa064340be51a09121c99f1d7730324c42592e7d93f3bff0e58fc9417b1c22",
-      "state": "unclaimed",
-      "createdAt": 1769881212820
+      "state": "completed",
+      "createdAt": 1769881212820,
+      "claimedBy": "W-7",
+      "claimedAt": 1769886586955,
+      "completedAt": 1769886767709,
+      "summary": "Port inconsistency (8080 in Ch7) was already resolved by G-30. Full audit completed: all CONSTRAINTS.md forbidden patterns clean across all 8 chapters. PID (48891/11438), port (8402), fd layout (3=log/4=socket/5=epoll/6=timer), and CLOCK_MONOTONIC timestamps are consistent. All acceptance criteria met except Ch1 word count (319 vs 500 minimum). Created G-34 (implement) to expand Chapter 1 to meet spec."
     },
     {
       "id": "G-27",
       "class": "audit",
       "content": "Chapter 8 pidfile logic vs Ch7 unlink: Ch7 (line 41) calls unlink(\"/var/run/daemon.pid\"), removing the pidfile from the filesystem, and line 61 confirms \"The pidfile does not exist.\" However, Ch8 (line 23) opens /var/run/daemon.pid with O_RDWR | O_CREAT and reads \"7291\\n\" from it. If the pidfile was unlinked in Ch7, it shouldn't exist for Ch8 to read. Ch8's O_CREAT flag would create an empty file, not one containing \"7291\\n\". Either Ch7 shouldn't unlink the pidfile (so Ch8 can find the stale PID), or Ch8 should find an empty/nonexistent file. The thematic intent (finding the previous instance's trace) requires the pidfile to exist, suggesting Ch7's unlink should be removed or Ch8 needs a different mechanism to encounter the stale PID.",
       "contentHash": "b1b9df53d08fb119c8a273846561a4cef41ed8ac05b7063503097000af3a2243",
-      "state": "unclaimed",
-      "createdAt": 1769881218494
+      "state": "completed",
+      "createdAt": 1769881218494,
+      "claimedBy": "W-8",
+      "claimedAt": 1769886588851,
+      "completedAt": 1769886798796,
+      "summary": "Full production readiness audit completed. All 8 chapters pass CONSTRAINTS.md forbidden pattern verification (0 violations across 77+ patterns). Found 1 critical issue and 5 moderate/minor issues:\n\nCRITICAL: Ch7 unlink(\"/var/run/daemon.pid\") breaks Ch8's stale-PID thematic payoff — the story's central philosophical moment. Ch8 reads \"48891\\n\" from a file that Ch7 deleted. Fix: remove unlink from Ch7.\n\nMODERATE: THEME_TRACKER.md, CONCEPTUAL_MAP.md, THEME_DOSSIERS.md, and NARRATOR_VOICE.md contain stale references to PID 7291, port 8080, and poll() despite chapters being harmonized to PID 48891, port 8402, and epoll_wait().\n\nMINOR: PROGRESS.md Ch1 constraint check not marked as Pass.\n\nGranules created:\n- G-35 (implement): Fix Ch7 pidfile unlink and update Ch7 spec\n- G-36 (implement): Harmonize all stale planning docs with current chapter content\n\nArtifacts produced: AUDIT_REPORT.md, updated PROGRESS.md"
     },
     {
       "id": "G-28",
@@ -326,30 +338,92 @@
       "class": "implement",
       "content": "Fix monotonic timestamp inconsistency across chapters. Ch1/Ch4/Ch7/Ch8 use clock_gettime returning seconds in the ~14.8M range (struct with tv_sec/tv_nsec). Ch3/Ch5/Ch6 use raw nanosecond values in the ~94.8 trillion range (e.g., 94827174038291 nanoseconds). These represent different uptime durations (~171 days vs ~3 years) and different formatting conventions (sec.nsec struct vs raw ns). All chapters should use a consistent format and timeline. Recommend aligning Ch3/Ch5/Ch6 to the sec.nsec struct format used in Ch1/Ch4/Ch7/Ch8, with monotonic values in the ~14.8M second range to represent a coherent daemon lifetime. Depends on G-22 (overall continuity fix) being resolved first or done simultaneously.",
       "contentHash": "3b897cb9d4f7c4c84839b284d8260df2adf90ffccda049a508eb4b943f9d1966",
-      "state": "claimed",
+      "state": "completed",
       "createdAt": 1769881377008,
       "claimedBy": "W-2",
-      "claimedAt": 1769885870848
+      "claimedAt": 1769885870848,
+      "completedAt": 1769886468068,
+      "summary": "Fixed monotonic timestamp inconsistency across chapters. Converted Ch3/Ch5/Ch6 from raw nanosecond format (e.g., 94827174038291 nanoseconds) to tv_sec/tv_nsec struct format matching Ch1/Ch4/Ch7. Aligned all values to coherent ~14.8M second timeline: Ch1(14823091) → Ch3(14830112) → Ch4(14851872) → Ch5(14852100) → Ch6(14852400) → Ch7(14852741) → Ch8(14852800). Fixed Ch8 from ~94.8M seconds to ~14.8M seconds, and corrected Ch8's log duration reference from 94877s to 29650s. Resolved merge conflicts with G-22's fd layout and PID harmonization. Created follow-up granule G-32 for Ch2 monotonic timestamp inconsistency (14227s vs Ch1's 14823091s)."
     },
     {
       "id": "G-30",
       "class": "implement",
       "content": "Fix chapters 7-8 to match harmonized fd/PID scheme from G-22. Ch7 (SIGTERM) and Ch8 (Respawn) need verification against canonical layout: fd3=log, fd4=socket, fd5=epoll, fd6=timer, PID 48891, port 8402, epoll_wait throughout. Ch8 currently references stale PID \"7291\" in pidfile — this should now read \"48891\" since Ch1 was updated. Ch8 uses PID 11438 for the new instance which is fine but its fd layout and event loop mechanism need checking for consistency.",
       "contentHash": "4ccc69f1de3b82089f909113ed2f06fe5ff3cac06c66a26a6f14f2cbb53e0bb8",
-      "state": "claimed",
+      "state": "completed",
       "createdAt": 1769886303216,
       "claimedBy": "W-3",
-      "claimedAt": 1769886313815
+      "claimedAt": 1769886313815,
+      "completedAt": 1769886518217,
+      "summary": "Harmonized chapters 7-8 to match canonical fd/PID/port/epoll scheme from G-22. Ch7: replaced poll() with epoll_wait(), fixed timer fd 5→6, added epoll fd 5 close, PID 7291→48891, port 8080→8402. Ch8: stale pidfile PID 7291→48891 with corrected ASCII bytes (52 56 56 57 49 0A), port 8080→8402, replaced poll() with epoll_wait(), added epoll_create1/timerfd_create for fd5/fd6. Updated both specs to match. Merged to main with conflict resolution (PROGRESS.md). No follow-up granules needed — all 8 chapters now consistent."
     },
     {
       "id": "G-31",
       "class": "implement",
       "content": "Restore pidfile write to Chapter 1. G-22 removed the pidfile write from Ch1 to avoid duplication with Ch2, but the Ch1 spec (spec_ch01_fork.md AC-8) requires \"Establishes the PID file motif.\" Options: (A) Add pidfile write back to Ch1 and adjust Ch2 to not re-read it (since it already contains current PID). (B) Update Ch1 spec to remove the pidfile requirement since Ch2 handles it with the richer stale-PID theme. Recommended: Option B — update the spec, since Ch2's treatment is thematically stronger.",
       "contentHash": "06b2b77159d6345825abdb6c5f0add931a42824dc4bcd4688c8593293aa021aa",
-      "state": "claimed",
+      "state": "completed",
       "createdAt": 1769886310040,
       "claimedBy": "W-4",
-      "claimedAt": 1769886338128
+      "claimedAt": 1769886338128,
+      "completedAt": 1769886474673,
+      "summary": "Implemented Option B: Updated Ch1 spec (spec_ch01_fork.md) to defer the pidfile motif to Ch2. Changed AC-8 from requiring pidfile write in Ch1 to noting it's deferred to Ch2 where the stale-PID discovery theme is richer. Also updated AC-1 sequence, Technical Requirements, Cross-cutting Concerns, and Summary sections. Updated PROGRESS.md. Merged to main via PR #1. No follow-up granules needed — the spec now accurately reflects the implemented prose."
+    },
+    {
+      "id": "G-32",
+      "class": "implement",
+      "content": "Fix Ch2 monotonic timestamp inconsistency. Ch2 has clock_gettime(CLOCK_MONOTONIC) returning 14227 seconds, but Ch1 (which narratively precedes or overlaps Ch2) uses 14823091 seconds. Ch2's bind() sequence should use monotonic values consistent with Ch1's timeline (~14823091 range). The value 14227 (~4 hours uptime) contradicts Ch1's ~171 days uptime.",
+      "contentHash": "f5e26fd6e93d0de224c6517c812c839d5ca20960b9c2bc4053019627b1742513",
+      "state": "completed",
+      "createdAt": 1769886452335,
+      "claimedBy": "W-5",
+      "claimedAt": 1769886483013,
+      "completedAt": 1769886571717,
+      "summary": "Fixed Ch2 CLOCK_MONOTONIC timestamp from 14227s (~4h uptime) to 14823091s (~171d uptime) on line 61 of chapter_02_bind.md, aligning with Ch1's established timeline. No follow-up granules needed — this was a single-value fix with no cascading effects."
+    },
+    {
+      "id": "G-33",
+      "class": "implement",
+      "content": "Update stale PID/port references in 5 planning documents. Replace PID 7291 with 48891 and port 8080 with 8402 in: CONCEPTUAL_MAP.md (9 instances), THEME_TRACKER.md (7 instances), THEME_DOSSIERS.md (7 instances), EMOTIONAL_ARC.md (1 instance), NARRATOR_VOICE.md (1 instance). Total: 25 replacements. The chapters and specs are already correct — only the planning docs lag behind the G-22/G-30 harmonization.",
+      "contentHash": "97449d04b7c4acd645bee3ce5a68e91a0c8513fd70dfe66d262cf651331169ce",
+      "state": "completed",
+      "createdAt": 1769886702015,
+      "claimedBy": "W-9",
+      "claimedAt": 1769886737381,
+      "completedAt": 1769886871513,
+      "summary": "Replaced all stale PID 7291→48891 and port 8080→8402 references across 5 planning documents: CONCEPTUAL_MAP.md (8 replacements), THEME_TRACKER.md (7 replacements), THEME_DOSSIERS.md (8 replacements), EMOTIONAL_ARC.md (1 replacement), NARRATOR_VOICE.md (2 replacements). Also fixed ASCII hex bytes in THEME_TRACKER.md from \"55 50 57 49 0A\" to \"52 56 56 57 49 0A\" to correctly encode \"48891\\n\". Total: 28 replacements. Merged to main and pushed. No follow-up granules needed."
+    },
+    {
+      "id": "G-34",
+      "class": "implement",
+      "content": "Chapter 1 (fork()) word count is 319, below the spec minimum of 500 words (AC-7 in spec_ch01_fork.md). Expand the chapter prose to meet the 500-1000 word target while maintaining all existing constraints, voice, and technical accuracy. The staccato rhythm must be preserved. Do not add pidfile operations (deferred to Ch2). Consider expanding the fork/setsid/close sequence, the /dev/null dup operations, or the initial log file open with more technical detail.",
+      "contentHash": "654124e1f3b7364cc7f0ca83cb6132d1dd8d8b67d986a656bfaf388c3582505e",
+      "state": "claimed",
+      "createdAt": 1769886747783,
+      "claimedBy": "W-10",
+      "claimedAt": 1769886787923
+    },
+    {
+      "id": "G-35",
+      "class": "implement",
+      "content": "Fix Ch7 pidfile unlink that breaks Ch8 stale-PID thematic payoff.\n\nProblem: Ch7 (chapter_07_sigterm.md line 43) calls unlink(\"/var/run/daemon.pid\") and line 63 confirms \"The pidfile does not exist.\" However, Ch8 (chapter_08_respawn.md line 23) opens the pidfile and reads \"48891\\n\" from it. If unlinked, O_CREAT would create an empty file, not one containing \"48891\\n\".\n\nRequired changes:\n1. In chapters/chapter_07_sigterm.md: Remove the unlink(\"/var/run/daemon.pid\") call (line 43) and the sentence \"The six bytes — 52 56 56 57 49 10 — are no longer addressable on the filesystem.\" Also remove \"No pidfile on disk.\" from line 55 and \"The pidfile does not exist.\" from line 63. The pidfile containing \"48891\\n\" should remain on disk after exit(0).\n2. In spec/spec_ch07_sigterm.md: Remove AC-12 (\"pidfile removal: unlink('/var/run/daemon.pid') before exit\"). Update cross-cutting concerns to say the pidfile persists with the stale PID for Ch8 to discover.\n3. Verify Ch8 still reads correctly after the fix.\n4. Run CONSTRAINTS.md forbidden pattern checks on modified files.",
+      "contentHash": "787bfbcd72d0379507790f807e7752bfc80c893ab0106455b44f154d3923767c",
+      "state": "completed",
+      "createdAt": 1769886774255,
+      "claimedBy": "W-11",
+      "claimedAt": 1769886813136,
+      "completedAt": 1769886930083,
+      "summary": "Fixed Ch7 pidfile unlink that broke Ch8 stale-PID thematic payoff. Removed unlink(\"/var/run/daemon.pid\") and related assertions (\"six bytes no longer addressable\", \"No pidfile on disk\", \"The pidfile does not exist\") from chapter_07_sigterm.md. Added closing line noting pidfile persists with stale PID \"48891\\n\". Updated spec AC-12 from \"pidfile removal\" to \"pidfile persists\". Updated spec cross-cutting concerns to describe Ch8 reading the stale pidfile. All CONSTRAINTS.md forbidden pattern checks pass. No follow-up granules needed."
+    },
+    {
+      "id": "G-36",
+      "class": "implement",
+      "content": "Harmonize stale planning docs with current chapter content after PID/port/fd harmonization.\n\nMultiple planning documents still reference old PID 7291, port 8080, and poll() despite chapters being harmonized to PID 48891, port 8402, and epoll_wait().\n\nRequired changes:\n\n1. THEME_TRACKER.md:\n   - Replace all PID 7291 references with 48891, all port 8080 with 8402\n   - Ch1 pidfile detail: Remove \"Contains stale '7204'. Overwritten with '7291\\n'.\" — Ch1 no longer writes pidfile (deferred to Ch2)\n   - Ch7 pidfile: \"7291\\n\" → \"48891\\n\"\n   - Ch8 stale PID: \"55 50 57 49 0A — ASCII '7291\\n'\" → \"52 56 56 57 49 0A — ASCII '48891\\n'\"\n   - Clock values Ch2: \"14227s\" → \"14823091s\"\n   - Clock values Ch8: \"94891812s\" → \"14852800s\"\n   - The Loop Ch1 and Ch8: \"poll(&fds, 1, -1)\" → update (Ch1 doesn't enter loop, Ch8 uses epoll_wait)\n\n2. CONCEPTUAL_MAP.md:\n   - PID 7291 Lifecycle table: all PID 7291 → 48891, port 8080 → 8402\n   - Ch1 description: Remove \"writes its PID to disk\" (pidfile deferred to Ch2)\n   - Act 1 establishes: \"PID 7291\" → \"PID 48891\"\n   - Ch8 description: \"'7291'\" → \"'48891'\"\n\n3. THEME_DOSSIERS.md:\n   - Ch1: \"writes its PID (7291)\" → remove pidfile write reference, update PID to 48891\n   - Ch2: \"port 8080\" → \"port 8402\"\n   - Ch8: \"binds to 8080\" → \"binds to 8402\", \"PID 11438 (not 7291)\" → \"(not 48891)\", \"'7291'\" → \"'48891'\"\n\n4. NARRATOR_VOICE.md:\n   - Observable info table: \"fd 3 bound to 0.0.0.0:8080\" → \"fd 4 bound to 0.0.0.0:8402\"\n\n5. PROGRESS.md:\n   - Ch1 Constraint Check: Change \"—\" to \"Pass\"",
+      "contentHash": "94dec40ef507efe2678459521507b1dd3c9eab8ea698c4a235310e6e469a66b2",
+      "state": "claimed",
+      "createdAt": 1769886781657,
+      "claimedBy": "W-12",
+      "claimedAt": 1769886883158
     }
   ]
 }

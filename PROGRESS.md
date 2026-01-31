@@ -4,7 +4,7 @@
 
 | Chapter | Title | Spec | Status | Constraint Check | Word Count |
 |---------|-------|------|--------|------------------|------------|
-| 1 | fork() | spec/spec_ch01_fork.md | Implemented | — | — |
+| 1 | fork() | spec/spec_ch01_fork.md | Implemented | Pass | 691 |
 | 2 | bind() | spec/spec_ch02_bind.md | Implemented | Pass | 601 |
 | 3 | accept() | spec/spec_ch03_accept.md | Implemented | Pass | 670 |
 | 4 | clock_gettime() | spec/spec_ch04_clock.md | Implemented | Pass | 667 |
@@ -46,3 +46,4 @@
 - **2026-01-31**: Chapter 2 (bind()) updated by W-5 (G-32). Fixed CLOCK_MONOTONIC timestamp from 14227s (~4h uptime) to 14823091s (~171d uptime), aligning with Ch1's established timeline.
 - **2026-01-31**: Planning docs updated by W-9 (G-33). Replaced stale PID 7291→48891 and port 8080→8402 in CONCEPTUAL_MAP.md, THEME_TRACKER.md, THEME_DOSSIERS.md, EMOTIONAL_ARC.md, NARRATOR_VOICE.md. Also fixed ASCII hex bytes (55 50 57 49→52 56 56 57 49) in THEME_TRACKER.md to match "48891".
 - **2026-01-31**: Ch7 pidfile fix by W-11 (G-35). Removed unlink("/var/run/daemon.pid") from Ch7 so pidfile persists with stale PID "48891\n" for Ch8 to discover. Updated spec AC-12 and cross-cutting concerns. All CONSTRAINTS.md checks pass.
+- **2026-01-31**: Chapter 1 (fork()) expanded by W-10 (G-34). Word count 319→691. Added fork inheritance detail (fd table, copy-on-write pages, signal dispositions), expanded setsid() with session/process group IDs and tty detach detail, expanded close() with reference counting, expanded /dev/null with EBADF prevention rationale, added O_APPEND semantics, CLOCK_MONOTONIC explanation, getppid() confirmation. All CONSTRAINTS.md forbidden word checks pass.
