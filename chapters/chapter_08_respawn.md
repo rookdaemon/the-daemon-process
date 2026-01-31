@@ -20,7 +20,7 @@ clock_gettime(CLOCK_MONOTONIC, &ts). ts.tv_sec = 94891812. ts.tv_nsec = 33104281
 
 write(3, "[94891812.331042817] PID 11438 started\n", 39). The kernel copies 39 bytes from the process's address space to the page cache. The bytes append after the existing log entries. The bytes will reach the disk when the kernel flushes.
 
-The process opens /var/run/daemon.pid with O_RDWR | O_CREAT. open() returns 4. The file existed. read(4, buf, 32) returns 5. The bytes in the buffer: 55 50 57 49 0A — ASCII for "7291\n". That PID is not in the process table. The process calls lseek(4, 0, SEEK_SET). The file position returns to byte 0. ftruncate(4, 0). The file is now empty.
+The process opens /var/run/daemon.pid with O_RDWR | O_CREAT. open() returns 4. The file existed. read(4, buf, 32) returns 6. The bytes in the buffer: 52 56 56 57 49 0A — ASCII for "48891\n". That PID is not in the process table. The process calls lseek(4, 0, SEEK_SET). The file position returns to byte 0. ftruncate(4, 0). The file is now empty.
 
 write(4, "11438\n", 6). Six bytes. The pidfile now contains the current PID.
 
@@ -32,16 +32,20 @@ The process calls socket(AF_INET, SOCK_STREAM, 0). The kernel allocates a socket
 
 setsockopt(4, SOL_SOCKET, SO_REUSEADDR, &one, sizeof(one)). The socket option is set. The kernel will allow binding to an address that is in TIME_WAIT state.
 
-bind(4, {AF_INET, 0.0.0.0, 8080}, 16). The socket is bound to port 8080 on all interfaces. bind() returns 0.
+bind(4, {AF_INET, 0.0.0.0, 8402}, 16). The socket is bound to port 8402 on all interfaces. bind() returns 0.
 
-listen(4, 128). The socket is now in the LISTEN state. The backlog queue can hold 128 pending connections. The kernel will accept SYN packets on port 8080 and complete the three-way handshake up to the backlog limit.
+listen(4, 128). The socket is now in the LISTEN state. The backlog queue can hold 128 pending connections. The kernel will accept SYN packets on port 8402 and complete the three-way handshake up to the backlog limit.
 
 clock_gettime(CLOCK_MONOTONIC, &ts). ts.tv_sec = 94891812. ts.tv_nsec = 332718204. Elapsed since first timestamp: 1675387 nanoseconds.
 
+`epoll_create1(0)` returns 5. The kernel allocates an epoll instance. `epoll_ctl(5, EPOLL_CTL_ADD, 4, &event)` registers the listening socket. Events: EPOLLIN.
+
+`timerfd_create(CLOCK_MONOTONIC, 0)` returns 6. `timerfd_settime(6, 0, &its, NULL)` arms the timer: interval 30000000000 nanoseconds. `epoll_ctl(5, EPOLL_CTL_ADD, 6, &event)` registers the timer with the epoll instance. Events: EPOLLIN.
+
 The process enters the event loop.
 
-poll(&fds, 1, -1). File descriptor 4. Events: POLLIN. Timeout: infinite. The process is now in state S — interruptible sleep. The CPU executes other processes. PID 11438 consumes no cycles. It occupies memory. Its page tables remain mapped. Its socket is in LISTEN.
+`epoll_wait(5, events, 64, -1)`. The process is now in state S — interruptible sleep. The CPU executes other processes. PID 11438 consumes no cycles. It occupies memory. Its page tables remain mapped. Its socket is in LISTEN.
 
-The process is a daemon. It has a PID, a session, a socket, a log file, a pidfile on disk. It has no terminal. It has no connection to the process that created it. The bytes "7291" that were in the pidfile are overwritten. The file descriptor table is clean: 0, 1, 2 point to /dev/null. 3 is the log. 4 is the socket.
+The process is a daemon. It has a PID, a session, a socket, a log file, a pidfile on disk. It has no terminal. It has no connection to the process that created it. The bytes "48891" that were in the pidfile are overwritten. The file descriptor table is clean: 0, 1, 2 point to /dev/null. 3 is the log. 4 is the socket. 5 is the epoll instance. 6 is the timer.
 
-The process waits for the kernel to deliver an event on file descriptor 4. There is nothing else to execute. There is nothing else.
+The process waits for the kernel to deliver an event on a monitored file descriptor. There is nothing else to execute. There is nothing else.
