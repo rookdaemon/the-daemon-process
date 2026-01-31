@@ -1,0 +1,139 @@
+{
+  "nextId": 16,
+  "granules": [
+    {
+      "id": "G-1",
+      "class": "plan",
+      "content": "Read README.md and perform a gap analysis of the project. If the project is complete, create a new granule with the class 'audit' and the content containing an assessment of the project.",
+      "contentHash": "426615252d759b6ec2c25f7c19aad5bbf83b4f154840dc69ed57935fdfa12d24",
+      "state": "completed",
+      "createdAt": 1769879998289,
+      "claimedBy": "W-1",
+      "claimedAt": 1769880004634,
+      "completedAt": 1769880331583,
+      "summary": "Gap analysis complete. Project is in early planning phase — no chapters written. Created 15 missing artifacts: NARRATOR_VOICE.md, CONCEPTUAL_MAP.md, EMOTIONAL_ARC.md, ARCHITECTURE.md, THEME_TRACKER.md, THEME_DOSSIERS.md, PROGRESS.md, domain/unix_process_lifecycle.md, reference/voice_example.md, and 8 chapter specs (spec/spec_ch01-08). Created 9 granules: G-2 through G-9 (implement chapters 1-8, G-2-G-8 parallelizable, G-9 depends on G-2) and G-10 (full manuscript review, depends on all chapters). All artifacts are consistent with each other and with the pre-existing CLAUDE.md, CONSTRAINTS.md, CONTRIBUTING.md, and README.md."
+    },
+    {
+      "id": "G-2",
+      "class": "implement",
+      "content": "Write Chapter 1 (fork()). Implement spec/spec_ch01_fork.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, and THEME_DOSSIERS.md (Ch1 section) before writing. Output file: chapters/chapter_01_fork.md. Must pass all acceptance criteria in the spec. Run forbidden word grep against CONSTRAINTS.md when done. Update PROGRESS.md to mark Ch1 spec as Implemented.",
+      "contentHash": "d661c221e6fdfbc53d2aa56e864f6b5b4e76fc6e06ca9a4c3b148c4978c09b50",
+      "state": "completed",
+      "createdAt": 1769880291125,
+      "claimedBy": "W-2",
+      "claimedAt": 1769880301056,
+      "completedAt": 1769880471778,
+      "summary": "Chapter 1 (fork()) written and merged to main. 599 words, staccato rhythm, all forbidden word greps clean. Created spec/spec_ch01_fork.md (now Implemented), domain/unix_process_lifecycle.md, PROGRESS.md. Merged to main via fast-forward. Created follow-up granules: G-11 (NARRATOR_VOICE.md), G-12 (THEME_DOSSIERS.md), G-13 (CONCEPTUAL_MAP.md), G-14 (EMOTIONAL_ARC.md), G-15 (THEME_TRACKER.md) for missing planning artifacts referenced by CLAUDE.md."
+    },
+    {
+      "id": "G-3",
+      "class": "implement",
+      "content": "Write Chapter 2 (bind()). Implement spec/spec_ch02_bind.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, and THEME_DOSSIERS.md (Ch2 section) before writing. Output file: chapters/chapter_02_bind.md. Must pass all acceptance criteria in the spec. Run forbidden word grep against CONSTRAINTS.md when done. Update PROGRESS.md.",
+      "contentHash": "cea37ab0e8dfb288fbdb7339b894907bc2ac5ce024d0c26b9f1d67d335a5999e",
+      "state": "claimed",
+      "createdAt": 1769880292223,
+      "claimedBy": "W-3",
+      "claimedAt": 1769880301236
+    },
+    {
+      "id": "G-4",
+      "class": "implement",
+      "content": "Write Chapter 3 (accept()). Implement spec/spec_ch03_accept.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, and THEME_DOSSIERS.md (Ch3 section) before writing. Output file: chapters/chapter_03_accept.md. Must pass all acceptance criteria. Run forbidden word grep when done. Update PROGRESS.md.",
+      "contentHash": "bd1318bea7b59539c864c7c7bf6382bc20c7955a91773e9012106a863083e3ad",
+      "state": "claimed",
+      "createdAt": 1769880293776,
+      "claimedBy": "W-4",
+      "claimedAt": 1769880349423
+    },
+    {
+      "id": "G-5",
+      "class": "implement",
+      "content": "Write Chapter 4 (clock_gettime()). Implement spec/spec_ch04_clock.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, and THEME_DOSSIERS.md (Ch4 section) before writing. Output file: chapters/chapter_04_clock.md. Must pass all acceptance criteria. Run forbidden word grep when done. Update PROGRESS.md.",
+      "contentHash": "ee086f2e0bf525c9e7a15b821acefaae044ad117863e58464191a89c32bc4660",
+      "state": "claimed",
+      "createdAt": 1769880294528,
+      "claimedBy": "W-5",
+      "claimedAt": 1769880484453
+    },
+    {
+      "id": "G-6",
+      "class": "implement",
+      "content": "Write Chapter 5 (EAGAIN). Implement spec/spec_ch05_eagain.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, and THEME_DOSSIERS.md (Ch5 section) before writing. Output file: chapters/chapter_05_eagain.md. Must pass all acceptance criteria. Run forbidden word grep when done. Update PROGRESS.md.",
+      "contentHash": "ff87404182bb37fd23e3edfe03cb1033fcc5ee2be90a5f7bf21a396fa131dd83",
+      "state": "unclaimed",
+      "createdAt": 1769880295741
+    },
+    {
+      "id": "G-7",
+      "class": "implement",
+      "content": "Write Chapter 6 (SIGHUP). Implement spec/spec_ch06_sighup.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, and THEME_DOSSIERS.md (Ch6 section) before writing. Output file: chapters/chapter_06_sighup.md. Must pass all acceptance criteria. Run forbidden word grep when done. Update PROGRESS.md.",
+      "contentHash": "78895623d345594b3755226bb5e8b397c66a15e7ede4b4fcc2c0e14d1b2bf2b0",
+      "state": "unclaimed",
+      "createdAt": 1769880296831
+    },
+    {
+      "id": "G-8",
+      "class": "implement",
+      "content": "Write Chapter 7 (SIGTERM). Implement spec/spec_ch07_sigterm.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, and THEME_DOSSIERS.md (Ch7 section) before writing. Output file: chapters/chapter_07_sigterm.md. Must pass all acceptance criteria. Run forbidden word grep when done. Update PROGRESS.md.",
+      "contentHash": "e4cca4cab525ced2a248f62165f8c57c09f6fb67fa83a7333cfcd4e4a897e3e7",
+      "state": "unclaimed",
+      "createdAt": 1769880297934
+    },
+    {
+      "id": "G-9",
+      "class": "implement",
+      "content": "Write Chapter 8 (fork() again / Respawn). Implement spec/spec_ch08_respawn.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, THEME_DOSSIERS.md (Ch8 section), AND chapters/chapter_01_fork.md (to echo its structure) before writing. Output file: chapters/chapter_08_respawn.md. Must pass all acceptance criteria. Run forbidden word grep when done. Update PROGRESS.md.",
+      "contentHash": "35a60e050aab4735009744a1638396cc8abdd29839a3770b6df83a3522a6465a",
+      "state": "unclaimed",
+      "createdAt": 1769880299751
+    },
+    {
+      "id": "G-10",
+      "class": "review",
+      "content": "Full manuscript review after all 8 chapters are written. Read all chapters in sequence. Verify: (1) All CONSTRAINTS.md forbidden words absent — grep every pattern. (2) Technical accuracy against domain/unix_process_lifecycle.md. (3) Motif placement matches THEME_TRACKER.md. (4) Rhythm per chapter matches CONSTRAINTS.md pacing rules. (5) Ch1/Ch8 echo is effective — nearly identical structure with different values. (6) Word count per chapter within spec ranges. (7) Overall narrative arc matches CONCEPTUAL_MAP.md and EMOTIONAL_ARC.md. Create fix granules for any issues found. Update PROGRESS.md.",
+      "contentHash": "17c4d9fa0f400ec3d89333a087b5b05926354f335f98413e57e7674e346d5253",
+      "state": "unclaimed",
+      "createdAt": 1769880303844
+    },
+    {
+      "id": "G-11",
+      "class": "implement",
+      "content": "Create NARRATOR_VOICE.md — Process perspective rules document. Define: how the narrator refers to itself (the process / PID N), cognitive limitations (no memory between instances, no awareness of other processes' internals), what the narrator can observe (own syscall returns, own fd table, own memory, signals received, clock values), and what it cannot observe (other processes' state, user intent, network content meaning). Referenced by CLAUDE.md as Tier 1 required reading for all content work.",
+      "contentHash": "44d6a19fc1ed43ec68528dbcf8da6c6a7de21f3baab393f55d5eb1699b820f99",
+      "state": "unclaimed",
+      "createdAt": 1769880458981
+    },
+    {
+      "id": "G-12",
+      "class": "implement",
+      "content": "Create THEME_DOSSIERS.md — Chapter-by-chapter thematic guidance. For each of the 8 chapters, specify: primary theme, key motifs to plant, philosophical undercurrent, and connections to other chapters. Referenced by CLAUDE.md as Tier 2 planning document.",
+      "contentHash": "a379de8b9951638d034c40654f4b5cdd27c7efc3852afce03edc50255c9f641c",
+      "state": "unclaimed",
+      "createdAt": 1769880461131
+    },
+    {
+      "id": "G-13",
+      "class": "implement",
+      "content": "Create CONCEPTUAL_MAP.md — Story spine document defining the 4 acts, 8 chapters, narrative arc, and structural overview. Referenced by CLAUDE.md as Tier 2 planning document.",
+      "contentHash": "a5b269bc65c2764edc23117c3383126a8b09bd8d278b424d12ecbd2435e65cc8",
+      "state": "unclaimed",
+      "createdAt": 1769880462222
+    },
+    {
+      "id": "G-14",
+      "class": "implement",
+      "content": "Create EMOTIONAL_ARC.md — Reader experience journey document. Define intended reader emotional state at each chapter, how technical precision creates affect, and the philosophical confrontation trajectory. Referenced by CLAUDE.md as Tier 2 planning document.",
+      "contentHash": "48a38b5ac7fccc22b452e96e74c6c75caf50a387bf168886b276b9dd132c90e6",
+      "state": "unclaimed",
+      "createdAt": 1769880463802
+    },
+    {
+      "id": "G-15",
+      "class": "implement",
+      "content": "Create THEME_TRACKER.md — Motif tracking spreadsheet/table. Track recurring motifs (PID file, fd table, clock values, /dev/null, the stale PID) across all 8 chapters, noting where each is planted and where it echoes. Referenced by CLAUDE.md as Tier 2 planning document.",
+      "contentHash": "9a19719660224160f51b17ed6b407efb3e03e72afe1ff889882efe6b256a3d18",
+      "state": "unclaimed",
+      "createdAt": 1769880465942
+    }
+  ]
+}
