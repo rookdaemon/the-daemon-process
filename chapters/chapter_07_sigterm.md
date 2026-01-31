@@ -40,8 +40,6 @@ write(3, "[1706215545.340112887] close fd=4 fd=5 fd=6 shutdown\n", 54).
 
 The file descriptor table: 0, 1, 2 point to /dev/null. 3 is the log. All others released.
 
-unlink("/var/run/daemon.pid"). The pidfile containing "48891\n" is removed from the directory entry. The inode reference count decrements. If no other process holds the file open, the inode is freed. The six bytes — 52 56 56 57 49 10 — are no longer addressable on the filesystem.
-
 write(3, "[1706215545.340387441] PID 48891 exiting status=0\n", 51). Fifty-one bytes. This is the last write to file descriptor 3. The log file on disk will contain this line after the kernel flushes the page cache.
 
 clock_gettime(CLOCK_MONOTONIC, &ts). ts.tv_sec = 14852741. ts.tv_nsec = 340501223. Elapsed since SIGTERM delivery: 1283219 nanoseconds. The entire shutdown sequence: 1.283219 milliseconds.
@@ -52,7 +50,7 @@ close(3). File descriptor 3 released. The log file descriptor is closed. The ker
 
 The file descriptor table: 0, 1, 2 point to /dev/null. No other entries.
 
-The process has no open sockets. No timer descriptors. No log file. No pidfile on disk. The memory pages contain code and data that will not be read again. The stack frame holds local variables that will not be referenced.
+The process has no open sockets. No timer descriptors. No log file. The memory pages contain code and data that will not be read again. The stack frame holds local variables that will not be referenced.
 
 exit(0).
 
@@ -60,6 +58,6 @@ The kernel receives the exit status. The process state transitions from R to Z �
 
 PID 48891 exists in the process table as a zombie entry: an exit status and a set of resource usage counters. PID 1 — the parent by adoption — calls wait4(). The exit status 0 is collected. The zombie entry is removed from the process table.
 
-PID 48891 is no longer in the process table. The PID can be reassigned by the kernel to a future process. The socket on port 8402 is in TIME_WAIT in the kernel's network stack. The log file on disk contains lines timestamped with CLOCK_REALTIME values. The pidfile does not exist.
+PID 48891 is no longer in the process table. The PID can be reassigned by the kernel to a future process. The socket on port 8402 is in TIME_WAIT in the kernel's network stack. The log file on disk contains lines timestamped with CLOCK_REALTIME values. The pidfile on disk contains "48891\n" — six bytes that refer to a PID no longer in the process table.
 
 The monotonic clock continues to advance. clock_gettime(CLOCK_MONOTONIC) would return values greater than 14852741.340501223, but no process with PID 48891 will call it.
