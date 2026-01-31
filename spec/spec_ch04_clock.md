@@ -19,7 +19,7 @@ Chapter 4 explores the process's relationship with time, expressed entirely thro
 8. **Timer operations shown**: timerfd_create, timerfd_settime, or poll() timeouts — the process uses timers to schedule periodic work
 9. **Monotonic vs realtime distinction**: Show at least one use of both CLOCK_MONOTONIC (for intervals) and CLOCK_REALTIME (for log timestamps or external reporting)
 10. **Duration calculation**: The process computes elapsed nanoseconds between events — this is the closest it comes to "experiencing" time
-11. **Continuity with chapters 1-3**: The process is the same PID 7291, the same socket on fd 4, the same log on fd 3
+11. **Continuity with chapters 1-3**: The process is the same PID 48891, the same log on fd 3, the same socket on fd 4, epoll on fd 5
 
 ## Technical Requirements
 
