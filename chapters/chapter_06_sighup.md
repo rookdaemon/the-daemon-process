@@ -4,7 +4,7 @@
 
 `epoll_wait()` returns. fd 3 reports EPOLLIN. `accept4(fd 3, &addr, &addrlen, SOCK_NONBLOCK)` returns 7. Source: 10.0.2.15:51994. `read(7, buf, 4096)` returns 241 bytes. The routing table maps the path to handler index 2. `write(7, response_buf, 1024)` returns 1024. `close(7)`.
 
-`clock_gettime(CLOCK_MONOTONIC, &ts)` returns 94839201448127 nanoseconds.
+`clock_gettime(CLOCK_MONOTONIC, &ts)`. ts.tv_sec = 14852400. ts.tv_nsec = 448127000.
 
 `epoll_wait()` returns. fd 3 reports EPOLLIN. `accept4(fd 3, &addr, &addrlen, SOCK_NONBLOCK)` returns 7. Source: 192.168.1.42:60118. `read(7, buf, 4096)` returns 389 bytes. The routing table maps the path to handler index 5. The handler at index 5 selects a response buffer — 2048 bytes. `write(7, response_buf, 2048)` retu—
 
@@ -42,7 +42,7 @@ Log rotation. The process calls `close(4)`. File descriptor 4 — the log file, 
 
 `open("/var/log/daemon.log", O_WRONLY | O_APPEND | O_CREAT, 0644)` returns 4. The kernel assigns the lowest available file descriptor. The same integer. A different inode — or the same inode, if no rotation occurred. The process does not check. The process holds fd 4: a writable file descriptor pointing to the current `/var/log/daemon.log`.
 
-`clock_gettime(CLOCK_MONOTONIC, &ts)` returns 94839201952634 nanoseconds.
+`clock_gettime(CLOCK_MONOTONIC, &ts)`. ts.tv_sec = 14852400. ts.tv_nsec = 448631507.
 
 `write(4, log_buf, 62)` deposits sixty-two bytes: a formatted timestamp, PID 48891, the string "configuration reloaded, SIGHUP handled" followed by a newline. The bytes append after whatever bytes the new file already contains. The log grows by one line.
 
@@ -56,7 +56,7 @@ PID 48891. The same PID. The same session ID. The same listening socket on fd 3,
 
 `accept4(fd 3, &addr, &addrlen, SOCK_NONBLOCK)` returns 7. Source: 10.0.2.15:52003. `read(7, buf, 4096)` returns 197 bytes. The routing table maps the path to handler index 2. `write(7, response_buf, 1024)` returns 1024. `close(7)`.
 
-`clock_gettime(CLOCK_MONOTONIC, &ts)` returns 94839202471882 nanoseconds. Delta from the pre-signal timestamp: 1,023,755 nanoseconds. One millisecond. The configuration reload, the log rotation, the flag check — all within the delta between two clock readings.
+`clock_gettime(CLOCK_MONOTONIC, &ts)`. ts.tv_sec = 14852400. ts.tv_nsec = 449150755. Delta from the pre-signal timestamp: 1,023,755 nanoseconds. One millisecond. The configuration reload, the log rotation, the flag check — all within the delta between two clock readings.
 
 `epoll_wait()` returns. fd 3 reports EPOLLIN.
 

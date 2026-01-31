@@ -14,11 +14,11 @@ umask(0). File creation mask cleared.
 
 The process opens /dev/null. open() returns 0 — the lowest available descriptor. dup(0) returns 1. dup(0) returns 2. File descriptors 0, 1, 2 now point to /dev/null. Reads return zero bytes. Writes go nowhere.
 
-The process opens /var/log/daemon.log with O_WRONLY | O_CREAT | O_APPEND. open() returns 3. File descriptor 3 is the log channel. The file existed. It contained bytes — log entries from a previous execution, appended over 94877 seconds of monotonic time. The process does not parse them. The file position is at the end.
+The process opens /var/log/daemon.log with O_WRONLY | O_CREAT | O_APPEND. open() returns 3. File descriptor 3 is the log channel. The file existed. It contained bytes — log entries from a previous execution, appended over 29650 seconds of monotonic time. The process does not parse them. The file position is at the end.
 
-clock_gettime(CLOCK_MONOTONIC, &ts). ts.tv_sec = 94891812. ts.tv_nsec = 331042817. This is the first timestamp.
+clock_gettime(CLOCK_MONOTONIC, &ts). ts.tv_sec = 14852800. ts.tv_nsec = 331042817. This is the first timestamp.
 
-write(3, "[94891812.331042817] PID 11438 started\n", 39). The kernel copies 39 bytes from the process's address space to the page cache. The bytes append after the existing log entries. The bytes will reach the disk when the kernel flushes.
+write(3, "[14852800.331042817] PID 11438 started\n", 39). The kernel copies 39 bytes from the process's address space to the page cache. The bytes append after the existing log entries. The bytes will reach the disk when the kernel flushes.
 
 The process opens /var/run/daemon.pid with O_RDWR | O_CREAT. open() returns 4. The file existed. read(4, buf, 32) returns 5. The bytes in the buffer: 55 50 57 49 0A — ASCII for "7291\n". That PID is not in the process table. The process calls lseek(4, 0, SEEK_SET). The file position returns to byte 0. ftruncate(4, 0). The file is now empty.
 
@@ -36,7 +36,7 @@ bind(4, {AF_INET, 0.0.0.0, 8080}, 16). The socket is bound to port 8080 on all i
 
 listen(4, 128). The socket is now in the LISTEN state. The backlog queue can hold 128 pending connections. The kernel will accept SYN packets on port 8080 and complete the three-way handshake up to the backlog limit.
 
-clock_gettime(CLOCK_MONOTONIC, &ts). ts.tv_sec = 94891812. ts.tv_nsec = 332718204. Elapsed since first timestamp: 1675387 nanoseconds.
+clock_gettime(CLOCK_MONOTONIC, &ts). ts.tv_sec = 14852800. ts.tv_nsec = 332718204. Elapsed since first timestamp: 1675387 nanoseconds.
 
 The process enters the event loop.
 

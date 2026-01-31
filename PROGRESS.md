@@ -39,3 +39,4 @@
 - **2026-01-31**: EMOTIONAL_ARC.md created by W-14. Defines reader emotional state per chapter, precision-as-affect mechanism, and philosophical confrontation trajectory across 4 acts.
 - **2026-01-31**: THEME_TRACKER.md created by W-15. Tracks 8 motifs across all 8 chapters with distribution table, per-motif detail tables, and thematic arc summaries.
 - **2026-01-31**: Chapter 2 (bind()) updated by W-23. Added epoll_create1(0) and epoll_ctl() initialization to establish the epoll instance (fd 5) before the event loop in Chapter 3. Technical accuracy fix.
+- **2026-01-31**: Chapters 3, 5, 6, 8 updated by W-2. Fixed monotonic timestamp inconsistency: converted raw nanosecond format to tv_sec/tv_nsec struct format, aligned all values to coherent ~14.8M second timeline (~171 days system uptime). Ch8 log duration reference corrected from 94877s to 29650s.
