@@ -20,7 +20,7 @@
 | CONSTRAINTS.md | Complete |
 | CONTRIBUTING.md | Complete |
 | CLAUDE.md | Complete |
-| NARRATOR_VOICE.md | Not started |
+| NARRATOR_VOICE.md | Complete |
 | THEME_DOSSIERS.md | Not started |
 | CONCEPTUAL_MAP.md | Not started |
 | EMOTIONAL_ARC.md | Not started |
