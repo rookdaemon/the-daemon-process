@@ -58,6 +58,6 @@ This is the first write to the log by PID 48891 since the startup message. The b
 
 The process holds three open file descriptors beyond /dev/null. 3: the log file. 4: the listening socket. 5: the epoll instance.
 
-clock_gettime(CLOCK_MONOTONIC) returns 14227 seconds, 882016449 nanoseconds. The interval from fork() to listening state: 0.003 seconds. Fourteen system calls.
+clock_gettime(CLOCK_MONOTONIC) returns 14823091 seconds, 882016449 nanoseconds. The interval from fork() to listening state: 0.003 seconds. Fourteen system calls.
 
 The socket is in state LISTEN. The accept queue is empty. The process enters the next sequence.
