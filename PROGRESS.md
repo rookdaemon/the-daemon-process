@@ -7,7 +7,7 @@
 | 1 | fork() | spec/spec_ch01_fork.md | Implemented |
 | 2 | bind() | spec/spec_ch02_bind.md | Not started |
 | 3 | accept() | spec/spec_ch03_accept.md | Not started |
-| 4 | clock_gettime() | spec/spec_ch04_clock.md | Not started |
+| 4 | clock_gettime() | spec/spec_ch04_clock.md | Implemented |
 | 5 | EAGAIN | spec/spec_ch05_eagain.md | Not started |
 | 6 | SIGHUP | spec/spec_ch06_sighup.md | Not started |
 | 7 | SIGTERM | spec/spec_ch07_sigterm.md | Not started |
