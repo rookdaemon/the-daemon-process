@@ -38,3 +38,4 @@
 - **2026-01-31**: THEME_DOSSIERS.md created by W-12. Chapter-by-chapter thematic guidance covering primary themes, key motifs, philosophical undercurrents, and inter-chapter connections for all 8 chapters.
 - **2026-01-31**: EMOTIONAL_ARC.md created by W-14. Defines reader emotional state per chapter, precision-as-affect mechanism, and philosophical confrontation trajectory across 4 acts.
 - **2026-01-31**: THEME_TRACKER.md created by W-15. Tracks 8 motifs across all 8 chapters with distribution table, per-motif detail tables, and thematic arc summaries.
+- **2026-01-31**: Chapter 2 (bind()) updated by W-23. Added epoll_create1(0) and epoll_ctl() initialization to establish the epoll instance (fd 5) before the event loop in Chapter 3. Technical accuracy fix.
