@@ -14,7 +14,7 @@ The process comes into existence and claims its resources.
 
 | Ch | Title | Syscall Focus | Narrative Function |
 |----|-------|---------------|-------------------|
-| 1 | fork() | fork, setsid, close, chdir, umask, open, write | Genesis. The process detaches from the parent, closes inherited fds, writes its PID to disk. Establishes the voice and constraints. |
+| 1 | fork() | fork, setsid, close, chdir, umask, open, write | Genesis. The process detaches from the parent, closes inherited fds, opens the log. Establishes the voice and constraints. |
 | 2 | bind() | socket, bind, listen, open, read, write | The process claims a network address. Encounters the stale PID in the pidfile — first thematic seed of identity/continuity, placed without commentary. |
 
 **Act 1 establishes**: voice, technical foundation, PID file motif, the process as PID 48891.
@@ -102,7 +102,7 @@ detach  claim         work   time   idle       reload  shutdown     echo
 - **Ch 8**: Different monotonic base — previous values unreachable
 
 ### Artifacts on Disk
-- **Ch 1**: PID file written, log opened
+- **Ch 1**: Log opened
 - **Ch 2**: Stale PID read, overwritten
 - **Ch 6**: Log fd closed and reopened (rotation)
 - **Ch 7**: PID file unlinked, final log entry
@@ -114,7 +114,7 @@ detach  claim         work   time   idle       reload  shutdown     echo
 |-------|---------|
 | fork() returns 0 | Ch 1 |
 | PID 48891 assigned | Ch 1 |
-| Pidfile written | Ch 1–2 |
+| Pidfile written | Ch 2 |
 | Socket bound to 0.0.0.0:8402 | Ch 2 |
 | Event loop running | Ch 3–5 |
 | SIGHUP received, config reloaded | Ch 6 |

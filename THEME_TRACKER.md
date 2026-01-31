@@ -8,8 +8,8 @@
 | **fd table** | plant | build | build | build | build | build | teardown | echo |
 | **Clock values** | plant | build | build | focus | build | build | final | echo |
 | **/dev/null** | plant | — | — | — | — | — | echo | echo |
-| **Stale PID** | seed | seed | — | — | — | — | — | payoff |
-| **The loop** | enter | — | focus | build | focus (empty) | interrupt | — | enter |
+| **Stale PID** | — | seed | — | — | — | — | — | payoff |
+| **The loop** | — | — | focus | build | focus (empty) | interrupt | — | enter |
 | **Signal handlers** | — | — | — | — | — | focus | focus | — |
 | **Memory/mmap** | plant | mention | — | — | static | mention | teardown | echo |
 
@@ -25,7 +25,7 @@ The pidfile is the only artifact that persists across process instances. It is t
 
 | Chapter | Role | Detail |
 |---------|------|--------|
-| Ch 1 | Plant | Opened with `O_WRONLY|O_CREAT|O_TRUNC`. Contains stale "7204". Overwritten with "48891\n". |
+| Ch 1 | Plant | Pidfile referenced but not yet written — Ch1 ends before pidfile write. Deferred to Ch2. |
 | Ch 2 | Echo | Opened with `O_RDWR|O_CREAT`. Contains stale "31072". Overwritten with "48891". |
 | Ch 6 | Echo | Referenced in config reload path (`/var/run/daemon.pid`). |
 | Ch 7 | Echo | `unlink("/var/run/daemon.pid")` — the pidfile containing "48891\n" removed from directory entry. |
@@ -53,13 +53,13 @@ Time exists only as returned values from `clock_gettime()`. Monotonic values are
 | Chapter | Role | Detail |
 |---------|------|--------|
 | Ch 1 | Plant | First `CLOCK_MONOTONIC` reading: 14823091s. Establishes the process's temporal origin. |
-| Ch 2 | Build | `CLOCK_REALTIME`: 1706745923 epoch seconds. `CLOCK_MONOTONIC`: 14227s. Fork-to-listen: 0.003s. |
+| Ch 2 | Build | `CLOCK_REALTIME`: 1706745923 epoch seconds. `CLOCK_MONOTONIC`: 14823091s. Fork-to-listen: 0.003s. |
 | Ch 3 | Build | Monotonic deltas between accept cycles: 483712ns, 955726ns, 2899424ns. Varying intervals. |
 | Ch 4 | Focus | Chapter devoted to time. Monotonic and realtime explored. "Values have no meaning beyond sequence and interval." |
 | Ch 5 | Build | Large monotonic gaps: 5,000,219,811ns between readings. 15 billion ns since last connection. |
 | Ch 6 | Build | Pre/post-signal delta: 1,023,755ns (one millisecond for reload). |
 | Ch 7 | Final | Last `CLOCK_REALTIME`: 1706215545. The final timestamp — the last mark of PID 48891. |
-| Ch 8 | Echo | New monotonic base: 94891812s. Previous values unreachable. Different origin, same call. |
+| Ch 8 | Echo | New monotonic base: 14852800s. Previous values unreachable. Different origin, same call. |
 
 ### /dev/null
 
@@ -77,8 +77,8 @@ The central thematic device. A PID read from the pidfile that maps to no running
 
 | Chapter | Role | Detail |
 |---------|------|--------|
-| Ch 1 | Seed | Pidfile contains "7204" — a previous PID. "That PID is not in the process table." Placed without commentary. |
-| Ch 2 | Seed | Pidfile contains "31072". "The bytes in the buffer correspond to no running process." The pattern established. |
+| Ch 1 | — | Pidfile not accessed in Ch1 (deferred to Ch2). |
+| Ch 2 | Seed | Pidfile contains "31072". "The bytes in the buffer correspond to no running process." First seed of the identity question, placed without commentary. |
 | Ch 8 | Payoff | Pidfile contains "48891" — the protagonist PID. Read as bytes (`52 56 56 57 49 0A`), overwritten. The reader recognizes what the process cannot. |
 
 ### The loop (epoll_wait / accept / read / write / close)
@@ -87,12 +87,12 @@ The operational heartbeat. The loop IS the process's existence during Act 2. Its
 
 | Chapter | Role | Detail |
 |---------|------|--------|
-| Ch 1 | Enter | `poll(&fds, 1, -1)` — the process enters the event loop for the first time. |
+| Ch 1 | Enter | Ch1 ends before the event loop begins — loop entry deferred to Ch3. |
 | Ch 3 | Focus | Full cycle: `epoll_wait → accept4 → read → write → close`. Repeated with varying content. |
 | Ch 4 | Build | `poll()` returns between clock readings. The loop as time's container. |
 | Ch 5 | Focus (empty) | `epoll_wait()` returns 0. Timeout expires. The loop without payload — same structure, no content. |
 | Ch 6 | Interrupt | `epoll_wait()` returns -1 / EINTR. SIGHUP fractures the cycle. Loop resumes with different config. |
-| Ch 8 | Enter | `poll(&fds, 1, -1)` — echoes Ch 1. The loop about to begin again. |
+| Ch 8 | Enter | `epoll_wait()` — the new process enters the event loop. Echoes the structural arc from Ch1 through Ch3. |
 
 ### Signal handlers (sigaction, signal delivery)
 
@@ -125,7 +125,7 @@ The physical substrate. Memory pages are the process's material existence. Their
 The central question — "is each instance the same being?" — is carried by the **stale PID** and **PID file** motifs:
 
 ```
-Ch1: stale "7204" found → Ch2: stale "31072" found → Ch7: "48891" written to pidfile, then unlinked → Ch8: "48891" found as bytes by new PID
+Ch2: stale "31072" found → Ch7: "48891" written to pidfile, then unlinked → Ch8: "48891" found as bytes by new PID
 ```
 
 The reader encounters the pattern twice (Ch1, Ch2) before the protagonist's own PID becomes the stale artifact (Ch8).
@@ -133,7 +133,7 @@ The reader encounters the pattern twice (Ch1, Ch2) before the protagonist's own 
 ### The Loop as Existence
 
 ```
-Ch1: loop entered → Ch3: full loop (focus) → Ch4: loop as time container → Ch5: empty loop (focus) → Ch6: loop interrupted → Ch8: loop entered again
+Ch3: full loop (focus) → Ch4: loop as time container → Ch5: empty loop (focus) → Ch6: loop interrupted → Ch8: loop entered again
 ```
 
 The loop progresses from full to empty to broken to restarted.
@@ -141,7 +141,7 @@ The loop progresses from full to empty to broken to restarted.
 ### Time Without Duration
 
 ```
-Ch1: first monotonic reading → Ch2: realtime epoch → Ch3: nanosecond deltas → Ch4: time explored (focus) → Ch5: large gaps → Ch7: final timestamp → Ch8: new monotonic base
+Ch1: first monotonic reading → Ch2: realtime epoch + monotonic → Ch3: nanosecond deltas → Ch4: time explored (focus) → Ch5: large gaps → Ch7: final timestamp → Ch8: new monotonic base
 ```
 
 Each instance's monotonic values are unreachable to the next. Only CLOCK_REALTIME persists as epoch seconds in the log file.

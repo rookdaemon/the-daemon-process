@@ -4,7 +4,7 @@
 
 | Chapter | Title | Spec | Status | Constraint Check | Word Count |
 |---------|-------|------|--------|------------------|------------|
-| 1 | fork() | spec/spec_ch01_fork.md | Implemented | — | — |
+| 1 | fork() | spec/spec_ch01_fork.md | Implemented | Pass | — |
 | 2 | bind() | spec/spec_ch02_bind.md | Implemented | Pass | 601 |
 | 3 | accept() | spec/spec_ch03_accept.md | Implemented | Pass | 670 |
 | 4 | clock_gettime() | spec/spec_ch04_clock.md | Implemented | Pass | 667 |
@@ -45,3 +45,4 @@
 - **2026-01-31**: Chapters 7-8 harmonized by W-3 (G-30). Ch7: replaced poll() with epoll_wait(), fixed timer fd 5→6, added epoll fd 5 close, PID 7291→48891, port 8080→8402. Ch8: stale pidfile PID 7291→48891 with corrected ASCII bytes, port 8080→8402, replaced poll() with epoll_wait(), added epoll_create1/timerfd_create for fd5/fd6. Specs updated. All CONSTRAINTS.md checks pass.
 - **2026-01-31**: Chapter 2 (bind()) updated by W-5 (G-32). Fixed CLOCK_MONOTONIC timestamp from 14227s (~4h uptime) to 14823091s (~171d uptime), aligning with Ch1's established timeline.
 - **2026-01-31**: Planning docs updated by W-9 (G-33). Replaced stale PID 7291→48891 and port 8080→8402 in CONCEPTUAL_MAP.md, THEME_TRACKER.md, THEME_DOSSIERS.md, EMOTIONAL_ARC.md, NARRATOR_VOICE.md. Also fixed ASCII hex bytes (55 50 57 49→52 56 56 57 49) in THEME_TRACKER.md to match "48891".
+- **2026-01-31**: Planning docs harmonized by W-12 (G-36). Fixed remaining stale refs: THEME_TRACKER.md clock values (14227s→14823091s, 94891812s→14852800s), removed Ch1 pidfile/loop-entry refs (deferred to Ch2/Ch3), replaced poll(&fds) with epoll_wait in Ch8 loop entry. CONCEPTUAL_MAP.md: removed "writes PID to disk" from Ch1, pidfile written Ch1–2→Ch2. THEME_DOSSIERS.md: Ch1 pidfile write deferred to Ch2. NARRATOR_VOICE.md: fd 3→fd 4 for socket. PROGRESS.md: Ch1 Constraint Check →Pass.

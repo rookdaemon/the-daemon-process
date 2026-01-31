@@ -13,7 +13,7 @@
 **Primary Theme**: Genesis without origin — the process begins execution mid-instruction, inheriting a world it did not create.
 
 **Key Motifs to Plant**:
-- **PID file write**: The process writes its PID (48891) to `/var/run/daemon.pid`. This is the artifact that will persist beyond exit(0) and be discovered by the next instance in Chapter 8.
+- **PID file**: The pidfile write is deferred to Chapter 2, where the stale PID discovery provides the first thematic seed. The artifact persists beyond exit(0) and is discovered by the next instance in Chapter 8.
 - **File descriptor severance**: close(0), close(1), close(2) — the inherited connections to the parent's terminal are cut. The process retains nothing of the context that spawned it.
 - **setsid() as detachment**: The process becomes a session leader, untethered from any controlling terminal.
 
