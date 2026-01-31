@@ -144,9 +144,9 @@
 **Primary Theme**: Orderly cessation — the process releases every resource it acquired, in reverse order, and calls exit(0).
 
 **Key Motifs to Plant**:
-- **Reverse-order teardown**: Resources are released in approximately the reverse order of acquisition (Chapters 1–4). Client fds close, listening socket closes, pidfile is unlinked, log fd closes. The unwinding mirrors the winding.
+- **Reverse-order teardown**: Resources are released in approximately the reverse order of acquisition (Chapters 1–4). Client fds close, listening socket closes, log fd closes. The pidfile is deliberately left on disk — the unwinding is not complete.
 - **Final log entry**: The last write() to the log fd — a CLOCK_REALTIME timestamp. This is the last trace of PID 48891 on any persistent medium.
-- **pidfile unlink**: unlink("/var/run/daemon.pid") removes the file. The PID 48891 will not be found by the next instance (unless the unlink fails or is skipped).
+- **pidfile left on disk**: The pidfile containing "48891\n" remains at `/var/run/daemon.pid`. The next instance (Ch8) will find it and read the old PID as bytes.
 - **exit(0)**: The process terminates with success status. File descriptors close. Memory pages unmap. The PID returns to the kernel's available pool.
 - **Interrupted rhythm**: Like Chapter 6, the signal arrives mid-operation. The prose breaks.
 

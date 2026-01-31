@@ -105,7 +105,7 @@ detach  claim         work   time   idle       reload  shutdown     echo
 - **Ch 1**: Log opened
 - **Ch 2**: Stale PID read, overwritten
 - **Ch 6**: Log fd closed and reopened (rotation)
-- **Ch 7**: PID file unlinked, final log entry
+- **Ch 7**: PID file left on disk, final log entry
 - **Ch 8**: PID file read again — "48891" found as bytes
 
 ## PID 48891 Lifecycle

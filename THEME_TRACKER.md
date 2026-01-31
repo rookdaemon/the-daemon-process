@@ -28,7 +28,7 @@ The pidfile is the only artifact that persists across process instances. It is t
 | Ch 1 | Plant | Pidfile referenced but not yet written — Ch1 ends before pidfile write. Deferred to Ch2. |
 | Ch 2 | Echo | Opened with `O_RDWR|O_CREAT`. Contains stale "31072". Overwritten with "48891". |
 | Ch 6 | Echo | Referenced in config reload path (`/var/run/daemon.pid`). |
-| Ch 7 | Echo | `unlink("/var/run/daemon.pid")` — the pidfile containing "48891\n" removed from directory entry. |
+| Ch 7 | Echo | Pidfile containing "48891\n" deliberately left on disk for Ch8 to discover. |
 | Ch 8 | Payoff | Opened. `read()` returns bytes `52 56 56 57 49 0A` — ASCII "48891\n". Overwritten with "11438\n". The old PID is bytes, not history. |
 
 ### fd table (file descriptor numbers)
