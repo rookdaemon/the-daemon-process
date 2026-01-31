@@ -91,7 +91,7 @@ detach  claim         work   time   idle       reload  shutdown     echo
 
 ### The Loop as Existence
 - **Ch 3**: The full loop — accept/read/write/close
-- **Ch 5**: The empty loop — poll/EAGAIN/poll
+- **Ch 5**: The empty loop — epoll_wait/EAGAIN/epoll_wait
 - **Ch 6**: The interrupted loop — SIGHUP fractures the cycle
 - **Ch 8**: The loop about to begin again
 
