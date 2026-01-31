@@ -22,7 +22,7 @@
 | CLAUDE.md | Complete |
 | NARRATOR_VOICE.md | Complete |
 | THEME_DOSSIERS.md | Not started |
-| CONCEPTUAL_MAP.md | Not started |
+| CONCEPTUAL_MAP.md | Complete |
 | EMOTIONAL_ARC.md | Not started |
 | THEME_TRACKER.md | Not started |
 | domain/unix_process_lifecycle.md | Draft |
