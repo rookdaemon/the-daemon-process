@@ -21,7 +21,7 @@
 | CONTRIBUTING.md | Complete |
 | CLAUDE.md | Complete |
 | NARRATOR_VOICE.md | Complete |
-| THEME_DOSSIERS.md | Not started |
+| THEME_DOSSIERS.md | Complete |
 | CONCEPTUAL_MAP.md | Complete |
 | EMOTIONAL_ARC.md | Not started |
 | THEME_TRACKER.md | Not started |
@@ -35,3 +35,4 @@
 - **2026-01-31**: Chapter 6 (SIGHUP) spec created and chapter written by W-7. All CONSTRAINTS.md forbidden word checks pass. 699 words.
 - **2026-01-31**: Chapter 7 (SIGTERM) spec created and chapter written by W-8. All CONSTRAINTS.md forbidden word checks pass. 645 words.
 - **2026-01-31**: Chapter 8 (Respawn) spec created and chapter written by W-9. Echoes Chapter 1 structure with PID 11438, stale pidfile read of "7291". All CONSTRAINTS.md forbidden word checks pass. 644 words.
+- **2026-01-31**: THEME_DOSSIERS.md created by W-12. Chapter-by-chapter thematic guidance covering primary themes, key motifs, philosophical undercurrents, and inter-chapter connections for all 8 chapters.
