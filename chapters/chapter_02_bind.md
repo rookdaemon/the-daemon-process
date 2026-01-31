@@ -52,8 +52,14 @@ This is the first write to persistent storage by PID 48891. The bytes will remai
 
 ---
 
-The process holds two open file descriptors. 3: the listening socket. 4: the log file.
+`epoll_create1(0)` returns 5. The kernel allocates an epoll instance — a file descriptor that monitors other file descriptors. The process now holds a mechanism for waiting on multiple descriptors without polling.
 
-clock_gettime(CLOCK_MONOTONIC) returns 14227 seconds, 882016449 nanoseconds. The interval from fork() to listening state: 0.003 seconds. Twelve system calls.
+`epoll_ctl(5, EPOLL_CTL_ADD, 3, &event)` registers the listening socket. Events: EPOLLIN. When a connection arrives in fd 3's backlog, the epoll instance will report it.
+
+---
+
+The process holds three open file descriptors. 3: the listening socket. 4: the log file. 5: the epoll instance.
+
+clock_gettime(CLOCK_MONOTONIC) returns 14227 seconds, 882016449 nanoseconds. The interval from fork() to listening state: 0.003 seconds. Fourteen system calls.
 
 The socket is in state LISTEN. The accept queue is empty. The process enters the next sequence.
