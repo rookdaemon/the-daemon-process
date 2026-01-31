@@ -42,52 +42,66 @@
       "class": "implement",
       "content": "Write Chapter 3 (accept()). Implement spec/spec_ch03_accept.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, and THEME_DOSSIERS.md (Ch3 section) before writing. Output file: chapters/chapter_03_accept.md. Must pass all acceptance criteria. Run forbidden word grep when done. Update PROGRESS.md.",
       "contentHash": "bd1318bea7b59539c864c7c7bf6382bc20c7955a91773e9012106a863083e3ad",
-      "state": "claimed",
+      "state": "completed",
       "createdAt": 1769880293776,
       "claimedBy": "W-4",
-      "claimedAt": 1769880349423
+      "claimedAt": 1769880349423,
+      "completedAt": 1769880528294,
+      "summary": "Chapter 3 (accept()) written and merged to main. Created spec/spec_ch03_accept.md and chapters/chapter_03_accept.md (670 words). All CONSTRAINTS.md forbidden word checks pass (emotional attribution, consciousness language, anthropomorphic intent, metaphor/simile, human temporal concepts — all clean). Spec status updated to Implemented. PROGRESS.md updated. Merge conflict with W-2/W-3 work resolved. No follow-up granules needed — existing G-10 (full manuscript review) covers post-completion review."
     },
     {
       "id": "G-5",
       "class": "implement",
       "content": "Write Chapter 4 (clock_gettime()). Implement spec/spec_ch04_clock.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, and THEME_DOSSIERS.md (Ch4 section) before writing. Output file: chapters/chapter_04_clock.md. Must pass all acceptance criteria. Run forbidden word grep when done. Update PROGRESS.md.",
       "contentHash": "ee086f2e0bf525c9e7a15b821acefaae044ad117863e58464191a89c32bc4660",
-      "state": "claimed",
+      "state": "completed",
       "createdAt": 1769880294528,
       "claimedBy": "W-5",
-      "claimedAt": 1769880484453
+      "claimedAt": 1769880484453,
+      "completedAt": 1769880665091,
+      "summary": "Chapter 4 (clock_gettime()) written and merged to main. Created spec/spec_ch04_clock.md and chapters/chapter_04_clock.md (667 words). Meditative loop rhythm per CONSTRAINTS.md Ch3-5 pacing. Features: clock_gettime(CLOCK_MONOTONIC) for intervals, clock_gettime(CLOCK_REALTIME) for log timestamps, timerfd for periodic idle-timeout scanning, duration calculations in nanoseconds, connection table management. All CONSTRAINTS.md forbidden word checks pass (6 grep categories: emotional attribution, consciousness language, anthropomorphic intent, metaphor/simile, human temporal concepts, self-reference). Spec status updated to Implemented. PROGRESS.md updated. Merge conflict with concurrent W-3/W-4 work resolved. No new granules created — existing G-11 through G-15 cover all identified gaps."
     },
     {
       "id": "G-6",
       "class": "implement",
       "content": "Write Chapter 5 (EAGAIN). Implement spec/spec_ch05_eagain.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, and THEME_DOSSIERS.md (Ch5 section) before writing. Output file: chapters/chapter_05_eagain.md. Must pass all acceptance criteria. Run forbidden word grep when done. Update PROGRESS.md.",
       "contentHash": "ff87404182bb37fd23e3edfe03cb1033fcc5ee2be90a5f7bf21a396fa131dd83",
-      "state": "unclaimed",
-      "createdAt": 1769880295741
+      "state": "completed",
+      "createdAt": 1769880295741,
+      "claimedBy": "W-6",
+      "claimedAt": 1769880529675,
+      "completedAt": 1769880703372,
+      "summary": "Chapter 5 (EAGAIN) implemented. Created spec/spec_ch05_eagain.md and chapters/chapter_05_eagain.md. 699 words. All CONSTRAINTS.md forbidden word checks pass (6 grep patterns, 0 matches). Spec status updated to Implemented. PROGRESS.md updated. Merged to main with conflict resolution (Ch4 was concurrently implemented by another worker). No follow-up granules created."
     },
     {
       "id": "G-7",
       "class": "implement",
       "content": "Write Chapter 6 (SIGHUP). Implement spec/spec_ch06_sighup.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, and THEME_DOSSIERS.md (Ch6 section) before writing. Output file: chapters/chapter_06_sighup.md. Must pass all acceptance criteria. Run forbidden word grep when done. Update PROGRESS.md.",
       "contentHash": "78895623d345594b3755226bb5e8b397c66a15e7ede4b4fcc2c0e14d1b2bf2b0",
-      "state": "unclaimed",
-      "createdAt": 1769880296831
+      "state": "claimed",
+      "createdAt": 1769880296831,
+      "claimedBy": "W-7",
+      "claimedAt": 1769880544457
     },
     {
       "id": "G-8",
       "class": "implement",
       "content": "Write Chapter 7 (SIGTERM). Implement spec/spec_ch07_sigterm.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, and THEME_DOSSIERS.md (Ch7 section) before writing. Output file: chapters/chapter_07_sigterm.md. Must pass all acceptance criteria. Run forbidden word grep when done. Update PROGRESS.md.",
       "contentHash": "e4cca4cab525ced2a248f62165f8c57c09f6fb67fa83a7333cfcd4e4a897e3e7",
-      "state": "unclaimed",
-      "createdAt": 1769880297934
+      "state": "claimed",
+      "createdAt": 1769880297934,
+      "claimedBy": "W-8",
+      "claimedAt": 1769880684479
     },
     {
       "id": "G-9",
       "class": "implement",
       "content": "Write Chapter 8 (fork() again / Respawn). Implement spec/spec_ch08_respawn.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, THEME_DOSSIERS.md (Ch8 section), AND chapters/chapter_01_fork.md (to echo its structure) before writing. Output file: chapters/chapter_08_respawn.md. Must pass all acceptance criteria. Run forbidden word grep when done. Update PROGRESS.md.",
       "contentHash": "35a60e050aab4735009744a1638396cc8abdd29839a3770b6df83a3522a6465a",
-      "state": "unclaimed",
-      "createdAt": 1769880299751
+      "state": "claimed",
+      "createdAt": 1769880299751,
+      "claimedBy": "W-9",
+      "claimedAt": 1769880719133
     },
     {
       "id": "G-10",
