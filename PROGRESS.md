@@ -11,7 +11,7 @@
 | 5 | EAGAIN | spec/spec_ch05_eagain.md | Implemented | Pass | 699 |
 | 6 | SIGHUP | spec/spec_ch06_sighup.md | Implemented | Pass | 699 |
 | 7 | SIGTERM | spec/spec_ch07_sigterm.md | Implemented | Pass | 645 |
-| 8 | Respawn | spec/spec_ch08_respawn.md | Not started | — | — |
+| 8 | Respawn | spec/spec_ch08_respawn.md | Implemented | Pass | 644 |
 
 ## Planning Artifacts
 
@@ -34,3 +34,4 @@
 - **2026-01-31**: Chapter 5 (EAGAIN) spec created and chapter written by W-6. All CONSTRAINTS.md forbidden word checks pass. 699 words.
 - **2026-01-31**: Chapter 6 (SIGHUP) spec created and chapter written by W-7. All CONSTRAINTS.md forbidden word checks pass. 699 words.
 - **2026-01-31**: Chapter 7 (SIGTERM) spec created and chapter written by W-8. All CONSTRAINTS.md forbidden word checks pass. 645 words.
+- **2026-01-31**: Chapter 8 (Respawn) spec created and chapter written by W-9. Echoes Chapter 1 structure with PID 11438, stale pidfile read of "7291". All CONSTRAINTS.md forbidden word checks pass. 644 words.

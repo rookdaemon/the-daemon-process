@@ -1,5 +1,5 @@
 {
-  "nextId": 16,
+  "nextId": 18,
   "granules": [
     {
       "id": "G-1",
@@ -78,20 +78,24 @@
       "class": "implement",
       "content": "Write Chapter 6 (SIGHUP). Implement spec/spec_ch06_sighup.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, and THEME_DOSSIERS.md (Ch6 section) before writing. Output file: chapters/chapter_06_sighup.md. Must pass all acceptance criteria. Run forbidden word grep when done. Update PROGRESS.md.",
       "contentHash": "78895623d345594b3755226bb5e8b397c66a15e7ede4b4fcc2c0e14d1b2bf2b0",
-      "state": "claimed",
+      "state": "completed",
       "createdAt": 1769880296831,
       "claimedBy": "W-7",
-      "claimedAt": 1769880544457
+      "claimedAt": 1769880544457,
+      "completedAt": 1769880755048,
+      "summary": "Chapter 6 (SIGHUP) written and merged to main. Created spec/spec_ch06_sighup.md and chapters/chapter_06_sighup.md. 699 words, all CONSTRAINTS.md forbidden word checks pass. Key features: mid-cycle prose interruption on signal delivery, EINTR from epoll_wait, volatile sig_atomic_t flag, config reload (open/read/close), log rotation (close old fd/open new fd), same PID throughout, resumed loop with different config values. Resolved merge conflict in PROGRESS.md with concurrent Ch4/Ch5 work. Created follow-up granules: G-16 (create missing NARRATOR_VOICE.md), G-17 (review Ch6 for technical accuracy)."
     },
     {
       "id": "G-8",
       "class": "implement",
       "content": "Write Chapter 7 (SIGTERM). Implement spec/spec_ch07_sigterm.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, and THEME_DOSSIERS.md (Ch7 section) before writing. Output file: chapters/chapter_07_sigterm.md. Must pass all acceptance criteria. Run forbidden word grep when done. Update PROGRESS.md.",
       "contentHash": "e4cca4cab525ced2a248f62165f8c57c09f6fb67fa83a7333cfcd4e4a897e3e7",
-      "state": "claimed",
+      "state": "completed",
       "createdAt": 1769880297934,
       "claimedBy": "W-8",
-      "claimedAt": 1769880684479
+      "claimedAt": 1769880684479,
+      "completedAt": 1769880859519,
+      "summary": "Chapter 7 (SIGTERM) written and merged to main. Created spec/spec_ch07_sigterm.md and chapters/chapter_07_sigterm.md. 645 words. All CONSTRAINTS.md forbidden word checks pass. Covers: SIGTERM delivery interrupting poll(), signal handler setting volatile flag, graceful shutdown sequence (client fds, timer fd, listening socket, pidfile unlink, final log entry, log fd close), exit(0), zombie reaping by PID 1. Prose uses interrupted rhythm per Ch6-7 pacing guidelines. Continuity maintained: PID 7291, fd 3=log, fd 4=socket, fd 5=timerfd. PROGRESS.md updated. No follow-up granules needed."
     },
     {
       "id": "G-9",
@@ -108,16 +112,20 @@
       "class": "review",
       "content": "Full manuscript review after all 8 chapters are written. Read all chapters in sequence. Verify: (1) All CONSTRAINTS.md forbidden words absent — grep every pattern. (2) Technical accuracy against domain/unix_process_lifecycle.md. (3) Motif placement matches THEME_TRACKER.md. (4) Rhythm per chapter matches CONSTRAINTS.md pacing rules. (5) Ch1/Ch8 echo is effective — nearly identical structure with different values. (6) Word count per chapter within spec ranges. (7) Overall narrative arc matches CONCEPTUAL_MAP.md and EMOTIONAL_ARC.md. Create fix granules for any issues found. Update PROGRESS.md.",
       "contentHash": "17c4d9fa0f400ec3d89333a087b5b05926354f335f98413e57e7674e346d5253",
-      "state": "unclaimed",
-      "createdAt": 1769880303844
+      "state": "claimed",
+      "createdAt": 1769880303844,
+      "claimedBy": "W-10",
+      "claimedAt": 1769880769593
     },
     {
       "id": "G-11",
       "class": "implement",
       "content": "Create NARRATOR_VOICE.md — Process perspective rules document. Define: how the narrator refers to itself (the process / PID N), cognitive limitations (no memory between instances, no awareness of other processes' internals), what the narrator can observe (own syscall returns, own fd table, own memory, signals received, clock values), and what it cannot observe (other processes' state, user intent, network content meaning). Referenced by CLAUDE.md as Tier 1 required reading for all content work.",
       "contentHash": "44d6a19fc1ed43ec68528dbcf8da6c6a7de21f3baab393f55d5eb1699b820f99",
-      "state": "unclaimed",
-      "createdAt": 1769880458981
+      "state": "claimed",
+      "createdAt": 1769880458981,
+      "claimedBy": "W-11",
+      "claimedAt": 1769880874294
     },
     {
       "id": "G-12",
@@ -150,6 +158,22 @@
       "contentHash": "9a19719660224160f51b17ed6b407efb3e03e72afe1ff889882efe6b256a3d18",
       "state": "unclaimed",
       "createdAt": 1769880465942
+    },
+    {
+      "id": "G-16",
+      "class": "implement",
+      "content": "Create NARRATOR_VOICE.md planning artifact. This document is referenced by CLAUDE.md as Tier 1 (must consult for ANY content work) but does not exist. Should codify the process perspective rules, cognitive limitations, and voice guidelines used across all chapters.",
+      "contentHash": "f09fdb04de5cf20283f99e09570b3352c6351b0a1ca8537ff50b7b2a38d38304",
+      "state": "unclaimed",
+      "createdAt": 1769880744710
+    },
+    {
+      "id": "G-17",
+      "class": "review",
+      "content": "Review Chapter 6 (SIGHUP) for technical accuracy and voice consistency. Verify: SIGHUP signal handling sequence, EINTR behavior, volatile sig_atomic_t usage, log rotation mechanics, config reload sequence. Check prose rhythm matches the \"interruption\" style specified in CONSTRAINTS.md for chapters 6-7.",
+      "contentHash": "fc5d29ae365f36ed9700fcbb9ee05da6d3ddadf06b8a57ecc00e67d8f2ed79ff",
+      "state": "unclaimed",
+      "createdAt": 1769880747781
     }
   ]
 }
