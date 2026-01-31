@@ -24,7 +24,7 @@
 | THEME_DOSSIERS.md | Complete |
 | CONCEPTUAL_MAP.md | Complete |
 | EMOTIONAL_ARC.md | Complete |
-| THEME_TRACKER.md | Not started |
+| THEME_TRACKER.md | Complete |
 | domain/unix_process_lifecycle.md | Draft |
 
 ## Log
@@ -37,3 +37,4 @@
 - **2026-01-31**: Chapter 8 (Respawn) spec created and chapter written by W-9. Echoes Chapter 1 structure with PID 11438, stale pidfile read of "7291". All CONSTRAINTS.md forbidden word checks pass. 644 words.
 - **2026-01-31**: THEME_DOSSIERS.md created by W-12. Chapter-by-chapter thematic guidance covering primary themes, key motifs, philosophical undercurrents, and inter-chapter connections for all 8 chapters.
 - **2026-01-31**: EMOTIONAL_ARC.md created by W-14. Defines reader emotional state per chapter, precision-as-affect mechanism, and philosophical confrontation trajectory across 4 acts.
+- **2026-01-31**: THEME_TRACKER.md created by W-15. Tracks 8 motifs across all 8 chapters with distribution table, per-motif detail tables, and thematic arc summaries.
