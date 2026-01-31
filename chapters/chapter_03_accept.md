@@ -58,7 +58,7 @@ fd 7 opens. fd 7 closes. fd 7 opens. fd 7 closes. The integer is reused because 
 
 Between iterations, the process state is TASK_INTERRUPTIBLE — sleeping in `epoll_wait()`, waiting for the kernel to deliver an event on a monitored descriptor. The CPU executes other processes. The scheduler will return control when data arrives on fd 3.
 
-`clock_gettime(CLOCK_MONOTONIC, &ts)` returns 94827481772918 nanoseconds. 303,879,477 nanoseconds have elapsed since the last connection. The gap is three hundred milliseconds of no connections. The process did not experience the gap. The process was not scheduled. The gap is the difference between two `clock_gettime` return values, computed after the second call.
+`clock_gettime(CLOCK_MONOTONIC, &ts)` returns 94827481772918 nanoseconds. 303,879,477 nanoseconds have elapsed since the last connection. The gap is three hundred milliseconds of no connections. The process was not scheduled during the gap. The gap is the difference between two `clock_gettime` return values, computed after the second call.
 
 `epoll_wait()` returns. fd 3 reports EPOLLIN.
 
