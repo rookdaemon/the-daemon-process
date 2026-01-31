@@ -10,9 +10,9 @@ Chapter 8 narrates a new fork() — a new process instance spawned after the pre
 ## Acceptance Criteria
 
 1. **Structural echo of Chapter 1**: The chapter follows the same syscall sequence as Chapter 1 — fork() → setsid() → close(0,1,2) → chdir("/") → umask(0) → open /dev/null → open log → read/write pidfile → socket → bind → listen → poll. Readers who recall Chapter 1 should recognize the pattern.
-2. **Different PID**: The new process gets a different PID (not 7291).
+2. **Different PID**: The new process gets a different PID (not 48891).
 3. **Different timestamps**: clock_gettime() values are different (later monotonic values).
-4. **Stale PID in pidfile**: When the process opens the pidfile, it reads the *previous* instance's PID (7291 from Chapter 1). That PID is not in the process table. The file is overwritten with the new PID.
+4. **Stale PID in pidfile**: When the process opens the pidfile, it reads the *previous* instance's PID (48891 from Chapter 1). That PID is not in the process table. The file is overwritten with the new PID.
 5. **No awareness of recurrence**: The process does not "notice" or "recognize" the old PID. It reads bytes, overwrites them. No commentary on repetition or continuity.
 6. **No forbidden words or constructions** per CONSTRAINTS.md.
 7. **Non-anthropomorphic voice throughout**: No emotional attribution, consciousness language, metaphor, simile, or anthropomorphic intent.
@@ -34,10 +34,10 @@ Chapter 8 narrates a new fork() — a new process instance spawned after the pre
 - New PID written to pidfile
 - Log file opened, first log entry written
 - Socket created, bound, listening
-- Same port as Chapter 1 (8080) to reinforce sameness
+- Same port as Chapter 1 (8402) to reinforce sameness
 
 ## Cross-cutting Concerns
 
 - Must echo Chapter 1's structure closely enough for recognition, different enough to be a new instance
-- The pidfile motif from Chapter 1 pays off here: the bytes "7291" are found and overwritten
+- The pidfile motif from Chapter 1 pays off here: the bytes "48891" are found and overwritten
 - Chapter 7 (SIGTERM) should end with the previous process calling exit() — Chapter 8 begins fresh
