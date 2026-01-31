@@ -6,7 +6,7 @@
 |---------|-------|------|--------|------------------|------------|
 | 1 | fork() | spec/spec_ch01_fork.md | Implemented | — | — |
 | 2 | bind() | spec/spec_ch02_bind.md | Implemented | Pass | 601 |
-| 3 | accept() | spec/spec_ch03_accept.md | Not started | — | — |
+| 3 | accept() | spec/spec_ch03_accept.md | Implemented | Pass | 670 |
 | 4 | clock_gettime() | spec/spec_ch04_clock.md | Not started | — | — |
 | 5 | EAGAIN | spec/spec_ch05_eagain.md | Not started | — | — |
 | 6 | SIGHUP | spec/spec_ch06_sighup.md | Not started | — | — |
@@ -30,3 +30,4 @@
 ## Log
 
 - **2026-01-31**: Chapter 2 (bind()) spec created and chapter written by W-3. All CONSTRAINTS.md forbidden word checks pass. 601 words.
+- **2026-01-31**: Chapter 3 (accept()) spec created and chapter written by W-4. All CONSTRAINTS.md forbidden word checks pass. 670 words.

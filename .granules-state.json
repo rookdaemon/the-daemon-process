@@ -30,10 +30,12 @@
       "class": "implement",
       "content": "Write Chapter 2 (bind()). Implement spec/spec_ch02_bind.md. Read CONSTRAINTS.md, NARRATOR_VOICE.md, domain/unix_process_lifecycle.md, and THEME_DOSSIERS.md (Ch2 section) before writing. Output file: chapters/chapter_02_bind.md. Must pass all acceptance criteria in the spec. Run forbidden word grep against CONSTRAINTS.md when done. Update PROGRESS.md.",
       "contentHash": "cea37ab0e8dfb288fbdb7339b894907bc2ac5ce024d0c26b9f1d67d335a5999e",
-      "state": "claimed",
+      "state": "completed",
       "createdAt": 1769880292223,
       "claimedBy": "W-3",
-      "claimedAt": 1769880301236
+      "claimedAt": 1769880301236,
+      "completedAt": 1769880511607,
+      "summary": "Chapter 2 (bind()) written and merged to main. Created spec/spec_ch02_bind.md (no pre-existing spec). Wrote chapters/chapter_02_bind.md (601 words). All CONSTRAINTS.md forbidden word checks pass. PROGRESS.md updated. Spec status set to Implemented. Fixed .gitignore to exclude worktrees. No follow-up granules needed — the existing granule queue covers remaining chapters and final review."
     },
     {
       "id": "G-4",
