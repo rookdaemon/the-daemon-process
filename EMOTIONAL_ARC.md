@@ -65,7 +65,7 @@ The story never tells the reader what to feel. It provides the raw material — 
 #### Chapter 8 — fork() again / Respawn
 **Reader state**: Recognition, uncanny repetition, philosophical confrontation
 **Mechanism**: The same syscall sequence as Chapter 1. fork() returns 0. A new PID. setsid(). close(0), close(1), close(2). The reader recognizes every beat. But the PID is different. The timestamps are different. The process reads the pidfile and finds bytes — the previous PID — and overwrites them without recognition. The reader recognizes. The process cannot.
-**Key moment**: The new process reading the old PID from the pidfile. The bytes "7291" are read, compared to nothing, overwritten. For the process, this is a file operation. For the reader, this is the entire philosophical question made concrete.
+**Key moment**: The new process reading the old PID from the pidfile. The bytes "48891" are read, compared to nothing, overwritten. For the process, this is a file operation. For the reader, this is the entire philosophical question made concrete.
 **Affect source**: The structural echo forces the question: is this the same process? The reader holds both instances in memory. The process holds neither. The gap between reader-knowledge and process-knowledge is where the story's meaning lives.
 
 ## The Philosophical Confrontation Trajectory

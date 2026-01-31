@@ -21,15 +21,15 @@ Legend: **plant** = first appearance, **seed** = thematic seed placed without co
 
 ### PID file (`/var/run/daemon.pid`)
 
-The pidfile is the only artifact that persists across process instances. It is the physical trace that connects PID 7291 to its successor.
+The pidfile is the only artifact that persists across process instances. It is the physical trace that connects PID 48891 to its successor.
 
 | Chapter | Role | Detail |
 |---------|------|--------|
-| Ch 1 | Plant | Opened with `O_WRONLY|O_CREAT|O_TRUNC`. Contains stale "7204". Overwritten with "7291\n". |
+| Ch 1 | Plant | Opened with `O_WRONLY|O_CREAT|O_TRUNC`. Contains stale "7204". Overwritten with "48891\n". |
 | Ch 2 | Echo | Opened with `O_RDWR|O_CREAT`. Contains stale "31072". Overwritten with "48891". |
 | Ch 6 | Echo | Referenced in config reload path (`/var/run/daemon.pid`). |
-| Ch 7 | Echo | `unlink("/var/run/daemon.pid")` — the pidfile containing "7291\n" removed from directory entry. |
-| Ch 8 | Payoff | Opened. `read()` returns bytes `55 50 57 49 0A` — ASCII "7291\n". Overwritten with "11438\n". The old PID is bytes, not history. |
+| Ch 7 | Echo | `unlink("/var/run/daemon.pid")` — the pidfile containing "48891\n" removed from directory entry. |
+| Ch 8 | Payoff | Opened. `read()` returns bytes `52 56 56 57 49 0A` — ASCII "48891\n". Overwritten with "11438\n". The old PID is bytes, not history. |
 
 ### fd table (file descriptor numbers)
 
@@ -58,7 +58,7 @@ Time exists only as returned values from `clock_gettime()`. Monotonic values are
 | Ch 4 | Focus | Chapter devoted to time. Monotonic and realtime explored. "Values have no meaning beyond sequence and interval." |
 | Ch 5 | Build | Large monotonic gaps: 5,000,219,811ns between readings. 15 billion ns since last connection. |
 | Ch 6 | Build | Pre/post-signal delta: 1,023,755ns (one millisecond for reload). |
-| Ch 7 | Final | Last `CLOCK_REALTIME`: 1706215545. The final timestamp — the last mark of PID 7291. |
+| Ch 7 | Final | Last `CLOCK_REALTIME`: 1706215545. The final timestamp — the last mark of PID 48891. |
 | Ch 8 | Echo | New monotonic base: 94891812s. Previous values unreachable. Different origin, same call. |
 
 ### /dev/null
@@ -79,7 +79,7 @@ The central thematic device. A PID read from the pidfile that maps to no running
 |---------|------|--------|
 | Ch 1 | Seed | Pidfile contains "7204" — a previous PID. "That PID is not in the process table." Placed without commentary. |
 | Ch 2 | Seed | Pidfile contains "31072". "The bytes in the buffer correspond to no running process." The pattern established. |
-| Ch 8 | Payoff | Pidfile contains "7291" — the protagonist PID. Read as bytes (`55 50 57 49 0A`), overwritten. The reader recognizes what the process cannot. |
+| Ch 8 | Payoff | Pidfile contains "48891" — the protagonist PID. Read as bytes (`52 56 56 57 49 0A`), overwritten. The reader recognizes what the process cannot. |
 
 ### The loop (epoll_wait / accept / read / write / close)
 
@@ -125,7 +125,7 @@ The physical substrate. Memory pages are the process's material existence. Their
 The central question — "is each instance the same being?" — is carried by the **stale PID** and **PID file** motifs:
 
 ```
-Ch1: stale "7204" found → Ch2: stale "31072" found → Ch7: "7291" written to pidfile, then unlinked → Ch8: "7291" found as bytes by new PID
+Ch1: stale "7204" found → Ch2: stale "31072" found → Ch7: "48891" written to pidfile, then unlinked → Ch8: "48891" found as bytes by new PID
 ```
 
 The reader encounters the pattern twice (Ch1, Ch2) before the protagonist's own PID becomes the stale artifact (Ch8).

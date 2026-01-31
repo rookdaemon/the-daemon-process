@@ -44,14 +44,14 @@ These are the only information sources available. The narrative must be construc
 | Source | Mechanism | Example |
 |--------|-----------|---------|
 | Own syscall return values | Every syscall returns a value or errno | `read() returns 512`, `open() returns fd 7`, `write() returns EAGAIN` |
-| Own file descriptor table | open(), close(), dup2(), the fd integers | `fd 0, 1, 2 closed after fork(); fd 3 bound to 0.0.0.0:8080` |
+| Own file descriptor table | open(), close(), dup2(), the fd integers | `fd 0, 1, 2 closed after fork(); fd 3 bound to 0.0.0.0:8402` |
 | Own memory contents | Stack variables, heap allocations, mmap regions | `The buffer at 0x7f... contains 512 bytes` |
 | Signals received | Signal number, siginfo_t metadata | `SIGTERM delivered. si_pid indicates PID 1.` |
 | Clock values | clock_gettime(), timerfd, rdtsc | `CLOCK_MONOTONIC reads 1_800_000_000_000 nanoseconds` |
 | Own process state | getpid(), getppid(), getuid(), setsid() returns | `getpid() returns 4821. getppid() returns 1.` |
 | Scheduling events | Context switches (observable as time gaps in CLOCK_MONOTONIC) | `470 million nanoseconds elapsed between two sequential clock reads` |
 | Filesystem reads | open() + read() on files the process has permission to access | `512 bytes read from /etc/daemon.conf` |
-| Environment variables | getenv(), the initial environ block | `getenv("LISTEN_PORT") returns "8080"` |
+| Environment variables | getenv(), the initial environ block | `getenv("LISTEN_PORT") returns "8402"` |
 
 ## What the Narrator Cannot Observe
 

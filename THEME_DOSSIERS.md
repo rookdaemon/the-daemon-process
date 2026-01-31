@@ -13,7 +13,7 @@
 **Primary Theme**: Genesis without origin — the process begins execution mid-instruction, inheriting a world it did not create.
 
 **Key Motifs to Plant**:
-- **PID file write**: The process writes its PID (7291) to `/var/run/daemon.pid`. This is the artifact that will persist beyond exit(0) and be discovered by the next instance in Chapter 8.
+- **PID file write**: The process writes its PID (48891) to `/var/run/daemon.pid`. This is the artifact that will persist beyond exit(0) and be discovered by the next instance in Chapter 8.
 - **File descriptor severance**: close(0), close(1), close(2) — the inherited connections to the parent's terminal are cut. The process retains nothing of the context that spawned it.
 - **setsid() as detachment**: The process becomes a session leader, untethered from any controlling terminal.
 
@@ -37,7 +37,7 @@
 - **bind() as existence**: Binding to an address:port makes the process visible to the network. Before bind(), the process is invisible.
 - **First log write**: The process writes its first entry to the log file — a timestamp and status. This is the first mark on the filesystem.
 
-**Philosophical Undercurrent**: Identity through address. The process occupies the same port as its predecessor. The network sees a socket on port 8080; it cannot distinguish which PID serves it. Identity is positional, not intrinsic.
+**Philosophical Undercurrent**: Identity through address. The process occupies the same port as its predecessor. The network sees a socket on port 8402; it cannot distinguish which PID serves it. Identity is positional, not intrinsic.
 
 **Connections to Other Chapters**:
 - ← Chapter 1: Inherits the detached, session-leader state. Continues setup.
@@ -145,8 +145,8 @@
 
 **Key Motifs to Plant**:
 - **Reverse-order teardown**: Resources are released in approximately the reverse order of acquisition (Chapters 1–4). Client fds close, listening socket closes, pidfile is unlinked, log fd closes. The unwinding mirrors the winding.
-- **Final log entry**: The last write() to the log fd — a CLOCK_REALTIME timestamp. This is the last trace of PID 7291 on any persistent medium.
-- **pidfile unlink**: unlink("/var/run/daemon.pid") removes the file. The PID 7291 will not be found by the next instance (unless the unlink fails or is skipped).
+- **Final log entry**: The last write() to the log fd — a CLOCK_REALTIME timestamp. This is the last trace of PID 48891 on any persistent medium.
+- **pidfile unlink**: unlink("/var/run/daemon.pid") removes the file. The PID 48891 will not be found by the next instance (unless the unlink fails or is skipped).
 - **exit(0)**: The process terminates with success status. File descriptors close. Memory pages unmap. The PID returns to the kernel's available pool.
 - **Interrupted rhythm**: Like Chapter 6, the signal arrives mid-operation. The prose breaks.
 
@@ -168,16 +168,16 @@
 
 **Key Motifs to Plant**:
 - **Structural echo of Chapter 1**: The syscall sequence is identical: fork() → setsid() → close fds → chdir → umask → open log → read/write pidfile → socket → bind → listen → poll. The reader recognizes the repetition. The process cannot.
-- **Different PID**: PID 11438 (not 7291). The kernel assigned a new number. The process writes it to the pidfile.
-- **Stale PID read**: The process reads "7291" from the pidfile — bytes left by the Chapter 1 instance. It overwrites them. No commentary.
+- **Different PID**: PID 11438 (not 48891). The kernel assigned a new number. The process writes it to the pidfile.
+- **Stale PID read**: The process reads "48891" from the pidfile — bytes left by the Chapter 1 instance. It overwrites them. No commentary.
 - **Different monotonic base**: clock_gettime(CLOCK_MONOTONIC) returns values unrelated to those in Chapters 1–7. The new process's monotonic clock is independent.
-- **Same port, same path, same code**: The process binds to 8080, reads the same config file, opens the same log path. Everything is the same except the PID and the timestamps.
+- **Same port, same path, same code**: The process binds to 8402, reads the same config file, opens the same log path. Everything is the same except the PID and the timestamps.
 
 **Philosophical Undercurrent**: The central question crystallizes. The reader has seen this before. The process has not. If the code is the same, the behavior is the same, and the function is the same — but the PID is different and no memory carries over — is it the same process? The question is posed entirely through structural repetition, never through narration.
 
 **Connections to Other Chapters**:
 - ← Chapter 1: Beat-for-beat structural echo. The reader's recognition of the pattern IS the philosophical payload.
 - ← Chapter 7: exit(0) preceded this fork(). The supervisor detected the exit and forked again.
-- ← Chapter 2: The stale PID "7291" was written in Chapter 1/2. It is found and overwritten here.
+- ← Chapter 2: The stale PID "48891" was written in Chapter 1/2. It is found and overwritten here.
 - ← Chapter 4: The monotonic clock values from Chapter 4 are unreachable. This process's CLOCK_MONOTONIC starts fresh.
 - ↔ All chapters: Chapter 8 implies the entire sequence will repeat — accept, clock, EAGAIN, SIGHUP, SIGTERM, fork again. The cycle is structural, not narrated.
