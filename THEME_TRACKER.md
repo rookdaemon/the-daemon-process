@@ -37,10 +37,10 @@ File descriptors are the process's interface to every resource. Their integer va
 
 | Chapter | Role | Detail |
 |---------|------|--------|
-| Ch 1 | Plant | close(0), close(1), close(2). Reopen via /dev/null. fd 3 = log, fd 4 = socket. |
+| Ch 1 | Plant | close(0), close(1), close(2). Reopen via /dev/null. fd 3 = log. |
 | Ch 2 | Build | Inherited table empty. fd 3 = socket, fd 4 = log. Two open descriptors. |
 | Ch 3 | Build | `accept4()` returns fd 7 repeatedly — same integer reused as connections open/close. |
-| Ch 4 | Build | fd 3 (socket), fd 4 (listening), fd 5 (timer), fd 6–8 (connections). |
+| Ch 4 | Build | fd 3 (log), fd 4 (listening socket), fd 5 (epoll), fd 6 (timer), fd 7–9 (connections). |
 | Ch 5 | Build | Only fd 3 (socket) and fd 4 (log) remain. Table static. |
 | Ch 6 | Build | fd 7 returned for config file — same integer released by client socket close. |
 | Ch 7 | Teardown | Descriptors closed in reverse order. Final state: 0, 1, 2 point to /dev/null, then released. |
@@ -89,7 +89,7 @@ The operational heartbeat. The loop IS the process's existence during Act 2. Its
 |---------|------|--------|
 | Ch 1 | Enter | Ch1 ends before the event loop begins — loop entry deferred to Ch3. |
 | Ch 3 | Focus | Full cycle: `epoll_wait → accept4 → read → write → close`. Repeated with varying content. |
-| Ch 4 | Build | `poll()` returns between clock readings. The loop as time's container. |
+| Ch 4 | Build | `epoll_wait()` returns between clock readings. The loop as time's container. |
 | Ch 5 | Focus (empty) | `epoll_wait()` returns 0. Timeout expires. The loop without payload — same structure, no content. |
 | Ch 6 | Interrupt | `epoll_wait()` returns -1 / EINTR. SIGHUP fractures the cycle. Loop resumes with different config. |
 | Ch 8 | Enter | `epoll_wait()` — the new process enters the event loop. Echoes the structural arc from Ch1 through Ch3. |
