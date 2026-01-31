@@ -23,7 +23,7 @@
 | NARRATOR_VOICE.md | Complete |
 | THEME_DOSSIERS.md | Not started |
 | CONCEPTUAL_MAP.md | Not started |
-| EMOTIONAL_ARC.md | Not started |
+| EMOTIONAL_ARC.md | Complete |
 | THEME_TRACKER.md | Not started |
 | domain/unix_process_lifecycle.md | Draft |
 
@@ -35,3 +35,4 @@
 - **2026-01-31**: Chapter 6 (SIGHUP) spec created and chapter written by W-7. All CONSTRAINTS.md forbidden word checks pass. 699 words.
 - **2026-01-31**: Chapter 7 (SIGTERM) spec created and chapter written by W-8. All CONSTRAINTS.md forbidden word checks pass. 645 words.
 - **2026-01-31**: Chapter 8 (Respawn) spec created and chapter written by W-9. Echoes Chapter 1 structure with PID 11438, stale pidfile read of "7291". All CONSTRAINTS.md forbidden word checks pass. 644 words.
+- **2026-01-31**: EMOTIONAL_ARC.md created by W-14. Defines reader emotional state per chapter, precision-as-affect mechanism, and philosophical confrontation trajectory across 4 acts.
