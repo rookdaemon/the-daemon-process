@@ -26,7 +26,7 @@ write(4, "11438\n", 6). Six bytes. The pidfile now contains the current PID.
 
 close(4). File descriptor 4 released. The pidfile remains on disk.
 
-PID 11438 has no parent that will query it. PID 1 — init — is now the parent, by adoption. The process is a daemon. This is a classification, not an identity. It means: no controlling terminal, session leader, parent is PID 1.
+PID 11438 has no parent that will query it. PID 1 — init — is now the parent, by adoption. The process is a daemon: no controlling terminal, session leader, parent is PID 1.
 
 The process calls socket(AF_INET, SOCK_STREAM, 0). The kernel allocates a socket. The return value is 4 — the file descriptor just released by the pidfile close, now reassigned. File descriptor 4 is a TCP socket.
 

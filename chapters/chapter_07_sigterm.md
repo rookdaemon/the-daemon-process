@@ -50,7 +50,7 @@ close(3). File descriptor 3 released. The log file descriptor is closed. The ker
 
 The file descriptor table: 0, 1, 2 point to /dev/null. No other entries.
 
-The process has no open sockets. No timer descriptors. No log file. The memory pages contain code and data that will not be read again. The stack frame holds local variables that will not be referenced.
+The process has no open sockets. No timer descriptors. No log file. The memory pages contain code and data. The stack frame holds local variables.
 
 exit(0).
 

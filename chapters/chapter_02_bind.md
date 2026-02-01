@@ -42,7 +42,7 @@ The socket is passive. It will not initiate connections. It receives them.
 
 ---
 
-clock_gettime(CLOCK_REALTIME, &ts). The timespec struct fills: 1706745923 seconds, 441827103 nanoseconds since epoch.
+clock_gettime(CLOCK_REALTIME, &ts). The timespec struct fills: 1706214123 seconds, 441827103 nanoseconds since epoch.
 
 The process calls write() on file descriptor 3. The bytes: a formatted timestamp, the PID, the string "listening on 0.0.0.0:8402" followed by a newline. Fifty-eight bytes. The kernel appends them after whatever bytes already occupy the file. The log grows by one line.
 
@@ -58,6 +58,6 @@ This is the first write to the log by PID 48891 since the startup message. The b
 
 The process holds three open file descriptors beyond /dev/null. 3: the log file. 4: the listening socket. 5: the epoll instance.
 
-clock_gettime(CLOCK_MONOTONIC) returns 14823091 seconds, 882016449 nanoseconds. The interval from fork() to listening state: 0.003 seconds. Fourteen system calls.
+clock_gettime(CLOCK_MONOTONIC) returns 14823091 seconds, 882016449 nanoseconds. The interval from fork() to listening state: 0.434 seconds.
 
 The socket is in state LISTEN. The accept queue is empty. The process enters the next sequence.
